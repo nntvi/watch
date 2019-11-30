@@ -1,20 +1,12 @@
 <?php
-function get_list_customer()
-{
-    return db_fetch_array("SELECT * FROM `tbl_customers`");
+
+function get_list_customer($start = 1, $num_per_page = 10, $where = ""){
+    $list_customer = db_fetch_array("SELECT * FROM `tbl_customers` LIMIT {$start}, {$num_per_page}");
+    return $list_customer;
 }
 
-function get_list_order()
-{
-    return db_fetch_array("SELECT tbl_orders.order_id,cus_name,detail_qty,order_sub_total,
-                                        cus_date, count(tbl_detail_order.order_id) sl,
-                                        status FROM tbl_orders 
-                                        INNER JOIN tbl_customers on tbl_orders.cus_id = tbl_customers.cus_id 
-                                        INNER JOIN tbl_detail_order on tbl_orders.cus_id = tbl_detail_order.cus_id 
-                                        GROUP BY tbl_orders.order_id, tbl_customers.cus_name");
-}
 #Hàm xử lý show toàn bộ thông tin và xử lý phân trang
-function get_order($start = 1, $num_per_page = 10, $where = "")
+function get_list_order($start = 1, $num_per_page = 10, $where = "")
 {
     $list_order = db_fetch_array("SELECT tbl_orders.order_id,cus_name,detail_qty,order_sub_total,
     cus_date, count(tbl_detail_order.order_id) sl, status FROM tbl_orders 

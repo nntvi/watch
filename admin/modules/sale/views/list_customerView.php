@@ -46,7 +46,7 @@
                                 <?php
                                 $temp = 0;
                                 foreach ($customer as $item) {
-                                    $temp++; 
+                                    $temp++;
                                     ?>
                                     <tr>
                                         <td><input type="checkbox" name="checkItem" class="checkItem"></td>
@@ -88,20 +88,9 @@
                 <div class="section-detail clearfix">
                     <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
                     <ul id="list-paging" class="fl-right">
-                        <li>
-                            <a href="" title="">
-                                <</a> </li> <li>
-                                    <a href="" title="">1</a>
-                        </li>
-                        <li>
-                            <a href="" title="">2</a>
-                        </li>
-                        <li>
-                            <a href="" title="">3</a>
-                        </li>
-                        <li>
-                            <a href="" title="">></a>
-                        </li>
+                        <?php
+                        echo get_pagging($num_page, $page, "?mod=sale&action=list_order");
+                        ?>
                     </ul>
                 </div>
             </div>

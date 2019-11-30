@@ -6,7 +6,21 @@ function construct()
 
 function list_customerAction()
 {
-    $data['customer'] = get_list_customer();
+    $num_rows = db_num_rows("SELECT * FROM `tbl_customers`");
+
+    # Số lượng bản ghi trên trang
+    $num_per_page = 3;
+    $total_row = $num_rows;
+
+    #Tính tổng số trang
+    $num_page = ceil($total_row / $num_per_page);
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+    $start = ($page - 1) * $num_per_page;
+
+    $list_customer = get_pagging_customer($start, $num_per_page);
+    $data['page'] = $page;
+    $data['num_page'] = $num_page;
+    $data['customer'] = $list_customer;
     load_view('list_customer', $data);
 }
 
@@ -28,7 +42,7 @@ function list_orderAction()
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
     $start = ($page - 1) * $num_per_page;
 
-    $list_order = get_order($start,$num_per_page);
+    $list_order = get_list_order($start,$num_per_page);
   
     $data['page'] = $page;
     $data['num_page'] = $num_page;
