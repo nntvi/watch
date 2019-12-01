@@ -17,7 +17,7 @@ function list_customerAction()
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
     $start = ($page - 1) * $num_per_page;
 
-    $list_customer = get_pagging_customer($start, $num_per_page);
+    $list_customer = get_list_customer($start, $num_per_page);
     $data['page'] = $page;
     $data['num_page'] = $num_page;
     $data['customer'] = $list_customer;
@@ -66,7 +66,7 @@ function detail_orderAction()
     load_view('detail_order', $data);
 }
 
-function searchAction(){
+function search_orderAction(){
     global $error, $str;
     if(isset($_POST['btn_search'])){
         $str = '';
@@ -79,8 +79,27 @@ function searchAction(){
     }
     // nếu tìm kiếm thấy có trong bảng
     if(result_search($str) > 0){ 
-        $list_search = get_search($str);
+        $list_search = get_order_search($str);
     }
     $data['list_search'] = $list_search;
-    load_view('search',$data);
+    load_view('search_order',$data);
+}
+function search_customerAction(){
+    global $error, $str;
+    if(isset($_POST['btn_search'])){
+        $str = '';
+        $error = array();
+        if(empty($_POST['search'])){
+            $error['search'] = "Nhập từ khoá tìm kiếm";
+        }else{
+           $str = trim($_POST['search']);
+        }
+    }
+   
+    //nếu tìm kiếm thấy có trong bảng
+    if(result_search($str) > 0){ 
+        $list_search = get_customer_search($str);
+    }
+    $data['list_search'] = isset($list_search) ? $list_search : "";
+    load_view('search_customer',$data);
 }

@@ -69,17 +69,17 @@ function get_pagging($num_page, $page, $base_url = "")
 
 #Xử lí tìm kiếm
 function result_search($str){
-    $item = db_num_rows("SELECT * FROM `tbl_customers` WHERE `cus_name` LIKE '%{$str}%'");
+    $item = db_num_rows("SELECT * FROM `tbl_customers` WHERE `cus_name` LIKE '%{$str}%' or cus_phone like '{$str}'");
     return $item;
 }
 
-function get_search($str)
+function get_order_search($str)
 {
-    $list_order = db_fetch_array("SELECT tbl_orders.order_id,cus_name,detail_qty,order_sub_total,
-    cus_date, count(tbl_detail_order.order_id) sl,
-    status FROM tbl_orders 
-    INNER JOIN tbl_customers on tbl_orders.cus_id = tbl_customers.cus_id 
-    INNER JOIN tbl_detail_order on tbl_orders.cus_id = tbl_detail_order.cus_id 
-    GROUP BY tbl_orders.order_id, tbl_customers.cus_name where cus_name like '%{$str}%'");
+    $list_order = db_fetch_array("SELECT * FROM `tbl_customers` where cus_name like '%{$str}%' or cus_phone like '{$str}'");
     return $list_order;
+}
+
+function get_customer_search($str){
+    $list_cus = db_fetch_array("SELECT * FROM `tbl_customers` where cus_name like '%{$str}%' or cus_phone like '{$str}'");
+    return $list_cus;
 }

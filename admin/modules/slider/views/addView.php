@@ -10,15 +10,17 @@
             </div>
             <div class="section" id="detail-page">
                 <div class="section-detail">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         <label for="title">Tên slider</label>
                         <input type="text" name="slide_name" id="title">
+                        <p class="error"><?php form_error('slide_name'); ?></p>
                         <!-- <label for="title">Link</label>
                         <input type="text" name="slug" id="slug"> -->
                         <!-- <label for="desc">Mô tả</label>
                         <textarea name="slide_" id="desc" class="ckeditor"></textarea> -->
                         <label for="title">Thứ tự</label>
                         <input type="text" name="slide_position" id="num-order">
+                        <p class="error"><?php form_error('slide_position'); ?></p>
                         <label>Hình ảnh</label>
                         <div id="uploadFile" enctype="multipart/form-data">
                             <input type="file" name="file" id="upload-thumb">

@@ -14,9 +14,9 @@
                         <ul class="post-status fl-left">
                             <li class="all"><a href="">Tất cả <span class="count">(69)</span></a></li>
                         </ul>
-                        <form method="GET" class="form-s fl-right">
-                            <input type="text" name="s" id="s">
-                            <input type="submit" name="sm_s" value="Tìm kiếm">
+                        <form method="POST" class="form-s fl-right" action="?mod=sale&action=search_customer">
+                            <input type="text" name="search" id="s">
+                            <input type="submit" name="btn_search" value="Tìm kiếm">
                         </form>
                     </div>
                     <div class="actions">

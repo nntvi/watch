@@ -326,8 +326,7 @@ function update_productAction()
         } else {
             $sub_cat = $_POST['sub-cat'];
         }
-
-        
+       
         $gender = $_POST['gender'];
         
         #Xử lý hình ảnh và upload

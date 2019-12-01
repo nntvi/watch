@@ -1,7 +1,7 @@
 <?php
     function construct()
     {
-        //load_model('index');
+        load_model('index');
     }
     function addAction(){
         global $error, $slide_name, $slide_position, $slide_thumb;
@@ -55,7 +55,6 @@
             if (empty($error)) {
                 if (move_uploaded_file($_FILES['file']['tmp_name'], $upload_file)) {
                     $data_thumb = array(
-                       
                         'slide_thumb' =>  $img_new
                     );
                 } else {
@@ -95,7 +94,4 @@
         load_view('list');
     }
 
-    function menuAction(){
-        load_view('menu');
-    }
 ?>

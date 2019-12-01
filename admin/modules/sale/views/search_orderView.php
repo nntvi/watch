@@ -17,8 +17,8 @@
                             <li class="pending"><a href="">Chờ xét duyệt<span class="count">(0)</span> |</a></li>
                             <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li>
                         </ul>
-                        <form method="POST" class="form-s fl-right" action="?mod=sale&action=search_order">
-                            <input type="text" name="search" id="s">
+                        <form method="GET" class="form-s fl-right">
+                            <input type="text" name="s" id="s">
                             <input type="submit" name="btn_search" value="Tìm kiếm">
                         </form>
                     </div>
@@ -50,34 +50,39 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $temp = 0;
-                                foreach ($order as $item) {
-                                    $temp++;
-                                    ?>
-                                    <tr>
-                                        <td><input type="checkbox" name="checkItem" class="checkItem"></td>
-                                        <td><span class="tbody-text"><?php echo $temp; ?></h3></span>
-                                        <td><span class="tbody-text"><?php echo $item['order_id'] ?></h3></span>
-                                        <td>
-                                            <div class="tb-title fl-left">
-                                                <a href="" title=""><?php echo $item['cus_name'] ?></a>
-                                            </div>
-                                            <ul class="list-operation fl-right">
-                                                <li><a href="" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                                <li><a href="" title="Xóa" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </td>
-                                        <td><span class="tbody-text"><?php echo $item['sl'] ?></span></td>
-                                        <td><span class="tbody-text"><?php echo number_format($item['order_sub_total']) . ' đ' ?></span></td>
-                                        <td><span class="tbody-text"><?php if ($item['status'] == 1) {
-                                                                                echo "Chờ duyệt";
-                                                                            } else if ($item['status'] == 2) echo "Đang vận chuyển";
-                                                                            else if ($item['status'] == 3) echo "Thành công"; ?></span></td>
-                                        <td><span class="tbody-text"><?php echo $item['cus_date'] ?></span></td>
-                                        <td><a href="?mod=sale&action=detail_order&id=<?php echo $item['order_id'] ?>" title="" class="tbody-text">Chi tiết</a></td>
-                                    </tr>
+                                if (!empty($search_order)) { ?>
+                                    <?php
+                                        $temp = 0;
+                                        foreach ($search_order as $item) {
+                                            $temp++;
+                                            ?>
+                                        <tr>
+                                            <td><input type="checkbox" name="checkItem" class="checkItem"></td>
+                                            <td><span class="tbody-text"><?php echo $temp; ?></h3></span>
+                                            <td><span class="tbody-text"><?php echo $item['order_id'] ?></h3></span>
+                                            <td>
+                                                <div class="tb-title fl-left">
+                                                    <a href="" title=""><?php echo $item['cus_name'] ?></a>
+                                                </div>
+                                                <ul class="list-operation fl-right">
+                                                    <li><a href="" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                                                    <li><a href="" title="Xóa" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </td>
+                                            <td><span class="tbody-text"><?php echo $item['sl'] ?></span></td>
+                                            <td><span class="tbody-text"><?php echo number_format($item['order_sub_total']) . ' đ' ?></span></td>
+                                            <td><span class="tbody-text"><?php if ($item['status'] == 1) {
+                                                                                        echo "Chờ duyệt";
+                                                                                    } else if ($item['status'] == 2) echo "Đang vận chuyển";
+                                                                                    else if ($item['status'] == 3) echo "Thành công"; ?></span></td>
+                                            <td><span class="tbody-text"><?php echo $item['cus_date'] ?></span></td>
+                                            <td><a href="?mod=sale&action=detail_order&id=<?php echo $item['order_id'] ?>" title="" class="tbody-text">Chi tiết</a></td>
+                                        </tr>
+                                    <?php       }
+                                        ?>
+                                <?php } else { ?>
+                                    <p class="error">Không có kết quả cho tìm kiếm vừa nhập</p>
                                 <?php } ?>
-
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -101,7 +106,7 @@
                     <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
                     <ul id="list-paging" class="fl-right">
                         <?php
-                        echo get_pagging($num_page, $page, "?mod=sale&action=list_order");
+                        // echo get_pagging($num_page, $page, "?mod=sale&action=list_order");
                         ?>
                     </ul>
                 </div>

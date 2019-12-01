@@ -1,4 +1,4 @@
-<?php get_header(); 
+<?php get_header();
 ?>
 <div id="main-content-wp" class="list-product-page">
     <div class="wrap clearfix">
@@ -15,7 +15,10 @@
                     </li>
                     <li>
                         <h3 class="title">Địa chỉ nhận hàng</h3>
-                        <span class="detail"><?php echo $detail_order['cus_address'] ?></span>
+                        <span class="detail"><?php if ($detail_order['status'] == 1) {
+                                                    echo "Chờ duyệt";
+                                                } else if ($detail_order['status'] == 2){ echo "Đang vận chuyển";}
+                                                else if ($detail_order['status'] == 3) {echo "Thành công";} ?></span>
                     </li>
                     <li>
                         <h3 class="title">Thông tin vận chuyển</h3>
@@ -25,11 +28,24 @@
                         <li>
                             <h3 class="title">Tình trạng đơn hàng</h3>
                             <select name="status">
-                                <option value='1' <?php if($detail_order['status']  == 1){ echo "selected";}else{echo "";}?> >Chờ duyệt</option>
-                                <option value='2' <?php if($detail_order['status']  == 2){ echo "selected";}else{echo "";}?>>Đang vận chuyển</option>
-                                <option value='3' <?php if($detail_order['status']  == 3){ echo "selected";}else{echo "";}?>>Thành công</option>
+                                <option value='1' <?php if ($detail_order['status']  == 1) {
+                                                        echo "selected";
+                                                    } else {
+                                                        echo "";
+                                                    } ?>>Chờ duyệt</option>
+                                <option value='2' <?php if ($detail_order['status']  == 2) {
+                                                        echo "selected";
+                                                    } else {
+                                                        echo "";
+                                                    } ?>>Đang vận chuyển</option>
+                                <option value='3' <?php if ($detail_order['status']  == 3) {
+                                                        echo "selected";
+                                                    } else {
+                                                        echo "";
+                                                    } ?>>Thành công</option>
                             </select>
                             <input type="submit" name="btn_update_status" value="Cập nhật đơn hàng">
+                            <input type="submit" name="btn_send_mail" style="background-color: #eb4d4b;" value="Gửi mail xác nhận">
                         </li>
                     </form>
                 </ul>
@@ -53,9 +69,9 @@
                         <tbody>
                             <?php
                             $temp = 0;
-                             foreach ($dt_od_product as $item) { 
-                                 $temp++;
-                                 ?>
+                            foreach ($dt_od_product as $item) {
+                                $temp++;
+                                ?>
                                 <tr>
                                     <td class="thead-text"><?php echo $temp; ?></td>
                                     <td class="thead-text">
@@ -64,9 +80,9 @@
                                         </div>
                                     </td>
                                     <td class="thead-text"><?php echo $item['pro_name'] ?></td>
-                                    <td class="thead-text"><?php echo number_format($item['pro_price']).'đ' ?></td>
+                                    <td class="thead-text"><?php echo number_format($item['pro_price']) . 'đ' ?></td>
                                     <td class="thead-text"><?php echo $item['detail_qty'] ?></td>
-                                    <td class="thead-text"><?php echo number_format($item['detail_total']).' đ' ?></td>
+                                    <td class="thead-text"><?php echo number_format($item['detail_total']) . ' đ' ?></td>
                                 </tr>
                             <?php } ?>
 
@@ -85,7 +101,7 @@
                         </li>
                         <li>
                             <span class="total-fee"><?php echo $result_order['sum_sl'] ?> sản phẩm</span>
-                            <span class="total"><?php echo number_format($result_order['order_sub_total']).' đ' ?></span>
+                            <span class="total"><?php echo number_format($result_order['order_sub_total']) . ' đ' ?></span>
                         </li>
                     </ul>
                 </div>
