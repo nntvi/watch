@@ -14,6 +14,7 @@ function loginAction()
 {
     //echo time();
     //echo date("d/m/Y h:m:s"); 
+    
     global $error, $username, $password;
     if (isset($_POST['btn_login'])) {
         $error = array();
@@ -69,7 +70,7 @@ function logoutAction()
 }
 function adduserAction()
 {
-    global $error, $success, $username, $password, $email, $address, $phone;
+    global $error, $success, $username, $password, $email, $address, $phone, $role;
     if (isset($_POST['btn_adduser'])) {
         $error = array();
         #Kiểm tra username
@@ -120,13 +121,24 @@ function adduserAction()
         } else {
             if (!is_phone_number($_POST['phone'])) {
                 $error['phone'] = "Số điện thoại không đúng định dạng";
-            } 
+            }
             // else if (strlen($_POST['phone']) > 10 && strlen($_POST['phone']) < 10) {
             //     $error['phone'] = "Số điện thoại không có thực";
             // } 
             else {
                 $phone = $_POST['phone'];
             }
+        }
+
+        
+        
+        if(empty($_POST['role1']) && empty($_POST['role2']) && empty($_POST['role3'])){
+            $error['role'] = "Bạn phải chọn quyền cho nhân viên";
+        }else{
+            $role = 0;
+            if (isset($_POST['role1'])) $role += 1;
+            if (isset($_POST['role2'])) $role += 2;
+            if (isset($_POST['role3'])) $role += 4;
         }
         //Regex
         if (empty($error)) {
@@ -137,8 +149,10 @@ function adduserAction()
                 'password' => md5($password),
                 'number_phone' => $phone,
                 'address' => $address,
+                'user_role' => $role,
                 'time' => date("d/m/Y"),
             );
+            //show_array($data);
             insert_user($data);
             $success['account'] = "Bạn thêm thành công";
         } else {
@@ -168,8 +182,8 @@ function updateAction()
             } else if (strlen($_POST['phone']) >= 12 && strlen($_POST['phone']) < 10) {
                 $error['phone'] = "Số điện thoại không có thực";
             } else {*/
-                $phone = $_POST['phone'];
-            }
+            $phone = $_POST['phone'];
+        }
         /*}*/
         if (empty($error)) {
             $data = array(
@@ -237,19 +251,19 @@ function resetAction()
         $error['account'] = "Đổi password thất bại";
       }
     }*/
-    
+
     global $error, $new_pass, $confirm_pass, $old_pass;
     if (isset($_POST['btn_changepassword'])) {
         $info_user = get_user_by_username(user_login());
         $error = array();
-        echo "1";
+
         #Kiểm tra password mới
         if (empty($_POST['old_pass'])) {
             $error['old_pass'] = "Không để trống tên password cũ";
         } else {
             $old_pass = md5($_POST['old_pass']);
         }
-        echo "2";
+
         if (empty($_POST['new_pass'])) {
             $error['new_pass'] = "Không để trống tên password";
         } else {
@@ -259,28 +273,28 @@ function resetAction()
                 $new_pass = $_POST['new_pass'];
             }
         }
-        echo "3";
+
         #Kiểm tra xác nhận
         if (empty($_POST['confirm_pass'])) {
             $error['confirm_pass'] = "Không để trống password xác nhận";
         } else {
-                $confirm_pass = $_POST['confirm_pass'];
+            $confirm_pass = $_POST['confirm_pass'];
         }
         $info_user['password'];
-        if(empty($error)){
-            if($old_pass == $info_user['password']){
-                if($new_pass == $confirm_pass){
+        if (empty($error)) {
+            if ($old_pass == $info_user['password']) {
+                if ($new_pass == $confirm_pass) {
                     $data = array(
                         'password' => md5($new_pass)
                     );
-                    reset_password($data,$info_user['password']);
-                }else{
+                    reset_password($data, $info_user['password']);
+                } else {
                     $error['comfirm_pass'] = "Mật khẩu xác nhận không chính xác";
                 }
             }
-        }else{
+        } else {
             $error['old_pass'] = "Password cũ bạn nhập không đúng";
-        } 
+        }
     }
     /*global $error, $old_pass, $new_pass, $confirm_pass;
     if (isset($_POST['btn_changepassword'])) {
@@ -338,7 +352,8 @@ function resetAction()
     load_view('reset');
 }
 
-function showAction(){
+function showAction()
+{
     $num_rows = db_num_rows("SELECT * from tbl_users");
     #Số lượng bản ghi trên trang
     $num_per_page = 3;
@@ -352,13 +367,13 @@ function showAction(){
     foreach ($list_users as &$link) {
         $link['url_update'] = "?mod=users&action=update&id={$link['user_id']}";
         $link['url_delete'] = "?mod=users&action=delete&id={$link['user_id']}";
-    } 
+    }
     $data['list_users'] = $list_users;
     $data['num_page'] = $num_page;
     $data['page'] = $page;
     load_view('show', $data);
-   
-   /* $admin = show_admin();
+
+    /* $admin = show_admin();
     foreach ($admin as &$link) {
         $link['url_update'] = "?mod=users&action=update&id={$link['user_id']}";
         $link['url_delete'] = "?mod=users&action=delete&id={$link['user_id']}";
@@ -366,6 +381,7 @@ function showAction(){
     $data['admin'] = $admin;
     load_view('show',$data);*/
 }
-function deleteAction(){
+function deleteAction()
+{
     load_view('delete');
 }

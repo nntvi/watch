@@ -75,14 +75,14 @@
                                 <div id="btn-cart">
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     <span id="num"><?php if (!empty($_SESSION['cart']['info'])) {
-                                                        echo $_SESSION['cart']['info']['number_order'];
+                                                        echo isset($_SESSION['cart']['info']['number_order']) ? $_SESSION['cart']['info']['number_order'] : "";
                                                     } else {
                                                         echo "0";
                                                     } ?></span>
                                 </div>
                                 <div id="dropdown">
                                     <p class="desc">Có <span><?php if (!empty($_SESSION['cart']['info'])) {
-                                                        echo $_SESSION['cart']['info']['number_order'];
+                                                        echo isset($_SESSION['cart']['info']['number_order']) ? $_SESSION['cart']['info']['number_order'] :"";
                                                     } else {
                                                         echo "0";
                                                     } ?> sản phẩm</span> trong giỏ hàng</p>

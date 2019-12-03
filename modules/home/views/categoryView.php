@@ -56,74 +56,81 @@
                     </ul>
                 </div>
             </div>
-            <div class="section" id="feature-product-wp">
+            <!-- <div class="section" id="feature-product-wp">
                 <div class="section-head">
                     <h3 class="section-title">Sản phẩm nổi bật</h3>
                 </div>
                 <div class="section-detail">
                     <ul class="list-item">
-                        <?php foreach($pro_hot as $hot){?>
+                        <?php foreach ($product as $pro) { ?>
                         <li>
-                            <a href="?mod=product&action=detail&id=<?php echo $hot['pro_id'];?>" title="" class="thumb">
-                                <img src="../project/admin/public/uploads/<?php echo $hot['pro_thumb'] ?>">
+                            <a href="?mod=product&action=detail&id=<?php echo $pro['pro_id']; ?>" title="" class="thumb">
+                                <img src="../project/admin/public/uploads/<?php echo $pro['pro_thumb'] ?>">
                             </a>
-                            <a href="?mod=product&action=detail&id=<?php echo $p['pro_id'];?>" title="" class="product-name"><?php echo $hot['pro_name']?></a>
+                            <a href="?mod=product&action=detail&id=<?php echo $pro['pro_id']; ?>" title="" class="product-name"><?php echo $pro['pro_name'] ?></a>
                             <div class="price">
-                                <span class="new"><?php echo number_format($hot['pro_price']).' đ'?></span>
-                                <span class="old"><?php echo number_format($hot['pro_price_old']).' đ'?></span>
+                                <span class="new"><?php echo number_format($pro['pro_price']) . ' đ' ?></span>
+                                <span class="old"><?php echo number_format($pro['pro_price_old']) . ' đ' ?></span>
                             </div>
                             <div class="action clearfix">
-                                <a href="?mod=cart&action=index&id={$hot['pro_id']}" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="?mod=cart&action=checkoutid={$hot['pro_id']}" title="" class="buy-now fl-right">Mua ngay</a>
+                                <a href="?mod=cart&action=index&id={$pro['pro_id']}" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                <a href="?mod=cart&action=checkoutid={$pro['pro_id']}" title="" class="buy-now fl-right">Mua ngay</a>
                             </div>
                         </li>
-                        <?php }?>
+                        <?php } ?>
                     </ul>
                 </div>
-            </div>
-            <?php
-                foreach($cat as $item){ 
-                    $cat_id = $item['cat_id'];
-                ?>  
+            </div> -->
             <div class="section" id="list-product-wp">
                 <div class="section-head">
-                    <h3 class="section-title"><?php echo $item['cat_name'] ?></h3>
+                    <h3 class="section-title"></h3>
                 </div>
-                <div class="section-detail">
-                    <?php foreach(get_sub_cat($cat_id) as $sub_menu){
-                        $id_sub_menu = $sub_menu['cat_id'];
-                        $count = 0;
-                    ?>
-                    <ul class="list-item clearfix">
-                        <?php foreach(get_product($id_sub_menu) as $p){ 
-                            //show_array($p);
-                            $count++;
-                            if($count < 5){
-                            ?>
-                        <li>
-                            <a href="?mod=product&action=detail&id=<?php echo $p['pro_id'];?>" title="" class="thumb">
-                                <img src="../project/admin/public/uploads/<?php echo $p['pro_thumb']; ?>">
-                            </a>
-                            <a href="?mod=product&action=detail&id=<?php echo $p['pro_id'];?>" title="" class="product-name"><?php echo $p['pro_name']; ?></a>
-                            <div class="price">
-                                <span class="new"><?php echo number_format($p['pro_price']) . 'đ' ?></span>
-                                <span class="old"><?php echo number_format($p['pro_price_old']) . 'đ'?></span>
-                            </div>
-                            <div class="action clearfix">
-                                <a href="?mod=cart&action=indexid={$p['pro_id']}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="?mod=cart&action=checkoutid={$p['pro_id']}" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
-                            </div>
-                        </li>      
-                            <?php }?>
-                        <?php }?>                
+                <?php if (!empty($product)) { ?>
+                    <div class="section-detail">
+                        <ul class="list-item clearfix">
+                            <?php foreach ($product as $pro) { ?>
+                                <li>
+                                    <a href="?mod=product&action=detail&id=<?php echo $pro['pro_id']; ?>" title="" class="thumb">
+                                        <img src="../project/admin/public/uploads/<?php echo $pro['pro_thumb'] ?>">
+                                    </a>
+                                    <a href="?mod=product&action=detail&id=<?php echo $pro['pro_id']; ?>" title="" class="product-name"><?php echo $pro['pro_name'] ?></a>
+                                    <div class="price">
+                                        <span class="new"><?php echo number_format($pro['pro_price']) . ' đ' ?></span>
+                                        <span class="old"><?php echo number_format($pro['pro_price_old']) . ' đ' ?></span>
+                                    </div>
+                                    <div class="action clearfix">
+                                        <a href="?mod=cart&action=index&id={$pro['pro_id']}" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                        <a href="?mod=cart&action=checkoutid={$pro['pro_id']}" title="" class="buy-now fl-right">Mua ngay</a>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php }?>
+                <!-- <div class="section-detail">
+                    <ul class="list-item clearfix" id="filter">
+
                     </ul>
-                    <?php }?>
-                </div>
+                </div> -->
             </div>
-            <?php } ?>
-          
         </div>
+
+
         <?php get_sidebar(); ?>
+        <div class="sidebar fl-left">
+    <div class="section" id="filter-product-wp">
+        <div class="section-head">
+            <h3 class="section-title"><a href="?mod=home&action=filter" style="color:white">Bộ lọc</a></h3>
+        </div>
+    </div>
+    <div class="section" id="banner-wp">
+        <div class="section-detail">
+            <a href="?page=detail_product" title="" class="thumb">
+                <img src="public/images/banner.png" alt="">
+            </a>
+        </div>
+    </div>
+</div>
     </div>
 </div>
 <?php get_footer(); ?>

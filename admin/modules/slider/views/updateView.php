@@ -5,14 +5,14 @@
         <div id="content" class="fl-right">
             <div class="section" id="title-page">
                 <div class="clearfix">
-                    <h3 id="index" class="fl-left">Thêm Slider</h3>
+                    <h3 id="index" class="fl-left">Chỉnh sửa Slider</h3>
                 </div>
             </div>
             <div class="section" id="detail-page">
                 <div class="section-detail">
                     <form method="POST" enctype="multipart/form-data">
                         <label for="title">Tên slider</label>
-                        <input type="text" name="slide_name" id="title">
+                        <input type="text" name="slide_name" id="title" value="$item['']">
                         <p class="error"><?php form_error('slide_name'); ?></p>
                         <label for="title">Link</label>
                         <input type="text" name="slide_link" id="slug">
@@ -33,7 +33,7 @@
                             <option value="1">Công khai</option>
                             <option value="2">Chờ duyệt</option>
                         </select> -->
-                        <button type="submit" name="btn_add_slide" id="btn-submit">Cập nhật</button>
+                        <button type="submit" name="btn_update_slide" id="btn-submit">Chỉnh sửa</button>
                     </form>
                 </div>
             </div>

@@ -80,6 +80,10 @@ function reset_password($data,$password){
 function delete_users($id){
     db_delete('tbl_users',"`user_id` = '{$id}'");
 }
+
+function get_role_user($username){
+    db_fetch_array("SELECT user_role FROM `tbl_users` WHERE `username` = '{$username}'");
+}
 /*function show_admin(){
     $admin = db_fetch_array("SELECT * FROM `tbl_users");
     return $admin;

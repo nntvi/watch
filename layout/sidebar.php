@@ -8,13 +8,13 @@
                 <?php
                 foreach (menu_two() as $c) {
                     echo '<li>
-                                    <a href="?page=category_product" title="">' . $c['cat_name'] . '</a>';
+                                    <a href="" title="">' . $c['cat_name'] . '</a>';
 
                     if (isset($c['children'])) {
                         echo '<ul class="sub-menu">';
                         foreach ($c['children'] as $c2)
                             echo '<li>
-                                            <a href="?page=category_product" title="">' . $c2['cat_name'] . '</a>
+                                            <a href="?mod=home&action=category&id=' . $c2['cat_id'] . '" title="">' . $c2['cat_name'] . '</a>
                                         </li>';
                         echo '</ul>';
                     }
@@ -27,7 +27,7 @@
     <div class="section" id="banner-wp">
         <div class="section-detail">
             <a href="" title="" class="thumb">
-                <!--<img src="public/images/banner.png" alt="">-->
+                <!-- <img src="public/images/banner.png" alt=""> -->
             </a>
         </div>
     </div>

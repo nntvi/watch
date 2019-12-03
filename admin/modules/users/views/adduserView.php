@@ -1,4 +1,6 @@
-<?php get_header();?>
+<?php get_header();
+
+?>
 <div id="main-content-wp" class="add-cat-page">
     <div class="wrap clearfix">
         <?php get_sidebar('users');?>
@@ -35,7 +37,18 @@
                         <label for="title">Địa chỉ</label>
                         <input type="text" name="address" id="title">         
                         <p class="error"><?php echo form_error('address'); ?></p>
-             
+                        
+                        <label for="title">Role</label>
+                        <input type="checkbox" name="role1" id="" value="1"> Quản lý bài viết
+                        <input type="checkbox" name="role2" id="" value="2"> Quản lý sản phẩm
+                        <input type="checkbox" name="role3" id="" value="4"> Quản lý bán hàng
+                       
+
+                        <!-- <select name="role" id="">
+                            <option value="1">Quản lý bài viết</option>
+                            <option value="2">Quản lý sản phẩm</option>
+                            <option value="4">Quản lý bán hàng</option>                       
+                        </select> -->
                         <!--<label>Hình ảnh</label>
                         <div id="uploadFile">
                             <input type="file" name="file" id="upload-thumb">
