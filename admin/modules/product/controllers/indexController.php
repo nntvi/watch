@@ -10,7 +10,7 @@ function construct()
 # Thêm danh mục
 function add_catAction()
 {
-    global $error, $cat_name;
+    global $error, $cat_name,$success;
     if (isset($_POST['btn_add_cat'])) {
         $error = array();
         if (empty($_POST['cat_name'])) {
@@ -26,6 +26,7 @@ function add_catAction()
                 'parent_cat' => 0
             );
             add_cat($data);
+            $success = "Đã thêm thành công";
         }
     }
     load_view('add_cat');
@@ -33,7 +34,7 @@ function add_catAction()
 # Thêm danh mục cha
 function add_cat_parentAction()
 {
-    global $error, $cat_name_parent, $parent_cat;
+    global $error, $cat_name_parent, $parent_cat,$success;
     if (isset($_POST['btn_cat_parent'])) {
         $error = array();
         if (empty($_POST['cat_name_parent'])) {
@@ -55,6 +56,7 @@ function add_cat_parentAction()
                 'parent_cat' => $parent_cat,
             );
             add_cat_parent($data);
+            $success = "Đã thêm thành công";
         }
     }
     load_view('add_cat_parent');
@@ -75,7 +77,7 @@ function list_cat_productAction()
 function updatecatAction()
 {
     $id = $_GET['id'];
-    global $error, $new_cat_name;
+    global $error, $new_cat_name,$success;
     if (isset($_POST['btn_update_cat'])) {
         $error = array();
 
@@ -91,6 +93,7 @@ function updatecatAction()
                 'cat_date' => date("d/m/Y"),
             );
             update_cat_product($id, $data);
+            $success = "Đã chỉnh sửa thành công";
         } else {
             $error['fail_update_cat'] = "Cập nhật thất bại";
         }
@@ -113,17 +116,19 @@ function deletecatAction()
     }
     redirect("?mod=product&action=list_cat_product");
 }
+# Lấy danh mục sử dụng ajax
 function getSubCatAction()
 {
     $id = $_GET['id'];
     $data = get($id);
     echo json_encode($data);
 }
+
 # Thêm sản phẩm
 function addAction()
 {
     global $pro_name, $pro_code, $pro_price,$pro_old_price,
-        $pro_desc, $pro_detail, $error, $sub_cat, $gender;
+        $pro_desc, $pro_detail, $error, $sub_cat, $gender,$gender,$success;
     #Xử lý hình ảnh
     if (isset($_FILES['file'])) {
         $error = array();
@@ -249,6 +254,7 @@ function addAction()
 
             $add_pro = array_merge($data, $data_thumb);
             add_product($add_pro);
+            $success = "Đã thêm sản phẩm thành công";
         }
     }
     load_view('add_product');
@@ -283,7 +289,7 @@ function update_productAction()
     $id = $_GET['id'];
     // echo $id;
     global $pro_name, $pro_code, $pro_price,
-        $pro_desc, $pro_detail, $error, $sub_cat, $gender;
+        $pro_desc, $pro_detail, $error, $sub_cat, $gender,$success;
     if (isset($_POST['btn_update_product'])) {
         $error = array();
         if (empty($_POST['product_name'])) {
@@ -397,6 +403,7 @@ function update_productAction()
                 }
                 //show_array($data);
                update_product($data, $id);
+               $success = "Đã chỉnh sửa sản phẩm thành công";
             } else {
                 echo "Upload thất bại";
             }

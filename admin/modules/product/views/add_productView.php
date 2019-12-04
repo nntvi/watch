@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php get_header(); 
+global $error, $success;
+?>
 <div id="main-content-wp" class="add-cat-page">
     <div class="wrap clearfix">
         <?php get_sidebar(); ?>
@@ -8,6 +10,8 @@
                     <h3 id="index" class="fl-left">Thêm sản phẩm</h3>
                 </div>
             </div>
+            <h1 style="font-size: 18px; color: red; margin-bottom: 15px;"><?php echo isset($success) ? $success : ""; ?></h1>
+
             <div class="section" id="detail-page">
                 <div class="section-detail">
                     <form method="POST" enctype="multipart/form-data">
@@ -39,12 +43,13 @@
 
                         <label for="desc">Chi tiết</label>
                         <textarea name="product_detail" id="desc" class="ckeditor"></textarea>
-                        <p class="error"><?php form_error('product_detail'); ?></p>
-
+                        
                         <label>Hình ảnh</label>
                         <div id="uploadFile" enctype="multipart/form-data">
                             <input type="file" name="file" id="upload-thumb">
                         </div>
+                        <p class="error"><?php form_error('file'); ?></p>
+
                        
                         <label>Danh mục sản phẩm</label>
                         <select id="parent_id" name="parent_id">

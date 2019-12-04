@@ -1,5 +1,5 @@
 <?php get_header();
-// show_array($item);
+global $error, $success;
 ?>
 <div id="main-content-wp" class="add-cat-page">
     <div class="wrap clearfix">
@@ -7,9 +7,10 @@
         <div id="content" class="fl-right">      
             <div class="section" id="title-page">
                 <div class="clearfix">
-                    <h3 id="index" class="fl-left">Thêm trang</h3>
+                    <h3 id="index" class="fl-left">Chỉnh sửa trang</h3>
                 </div>
             </div>
+            <h1 style="font-size: 18px; color: red; margin-bottom: 15px;"><?php echo isset($success) ? $success : ""; ?></h1>
             <div class="section" id="detail-page">
                 <div class="section-detail">
                     <form method="POST">

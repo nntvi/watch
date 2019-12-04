@@ -3,10 +3,7 @@
     {
         load_model('index');
     }
-    function addAction(){
-        load_view('add');
-    }  
-
+    
     function listAction(){
         $page = show_page();
         foreach ($page as &$item){
@@ -18,7 +15,7 @@
     function updateAction(){
 
         $id = (int) $_GET['id'];
-        global $error, $detail, $title, $slug;
+        global $error, $detail, $title, $slug,$success;
         if(isset($_POST['btn_update_page'])){
             $error = array();
             if(empty($_POST['title'])){
@@ -44,7 +41,10 @@
                     'page_detail' => $detail,
                 );
                 upload_page($data,$id);
+                $success = "Đã chỉnh sửa thành công";
             }
+        }else{
+            print_r($error);
         }
         $data['item'] = get_page_by_id($id);
         load_view('update',$data);

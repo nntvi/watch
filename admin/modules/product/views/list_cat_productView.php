@@ -18,7 +18,7 @@
                         <table class="table list-table-wp">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Tiêu đề</span></td>
                                     <td><span class="thead-text">Thứ tự</span></td>
@@ -32,7 +32,7 @@
                                 $temp = 1;
                                 foreach ($cat_product as $item) { ?>
                                     <tr>
-                                        <td><input type="checkbox" name="checkItem" class="checkItem"></td>
+                                        <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
                                         <td><span class="tbody-text"><?php echo $temp++; ?></h3></span>
                                         <td class="clearfix">
                                             <div class="tb-title fl-left">
@@ -55,7 +55,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="tfoot-text">STT</span></td>
                                     <td><span class="tfoot-text-text">Tiêu đề</span></td>
                                     <td><span class="tfoot-text">Thứ tự</span></td>
@@ -70,7 +70,7 @@
             </div>
             <div class="section" id="paging-wp">
                 <div class="section-detail clearfix">
-                    <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
+                    <!-- <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p> -->
                     <ul id="list-paging" class="fl-right">
                     <!-- <?php 
                             // echo get_pagging($num_page,$page,"?mod=product&action=list_cat_product");

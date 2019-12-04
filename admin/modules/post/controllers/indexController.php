@@ -4,7 +4,7 @@
         load_model('index');
     }
     function addAction(){
-        global $error, $title, $detail;
+        global $error, $title, $detail, $success;
         $status = "Hoạt động";
         if (isset($_FILES['file'])) {
             $error = array();
@@ -56,7 +56,6 @@
             if (empty($error)) {
                 if (move_uploaded_file($_FILES['file']['tmp_name'], $upload_file)) {
                     $data_thumb = array(
-                       
                         'post_thumb' =>  $img_new
                     );
                 } else {
@@ -88,6 +87,7 @@
                 );
                 $combine = array_merge($data_thumb,$data);
                 insert_post($combine);
+                $success = "Đã thêm thành công";
             }else{
                 $error['post'] = "Thêm bài viết thất bại";
             }
@@ -121,7 +121,7 @@
     function updateAction(){
         $id = $_GET['id'];
         $status = "Đã chỉnh sửa";
-        global $error, $title, $detail;
+        global $error, $title, $detail,$success ;
      
         if(isset($_POST['btn_update_post'])){
             $error = array();
@@ -201,6 +201,7 @@
                     }
                     //show_array($data);
                     update_post($data,$id);
+                    $success = "Đã chỉnh sửa thành công";
             } else { 
                 echo "Upload thất bại";
              }

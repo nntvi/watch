@@ -32,4 +32,4 @@ $autoload['lib'] = array('validation', 'email', 'data_tree');
  */
 
 
-$autoload['helper'] = array('data', 'url', 'users', 'format');
+$autoload['helper'] = array('data', 'url', 'users', 'format', 'role');

@@ -13,7 +13,7 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">(69)</span></a> |</li>
+                            <li class="all"><a href="">Tất cả <span class="count">(69)</span></a> </li>
                             <!-- <li class="publish"><a href="">Đã đăng <span class="count">(51)</span></a> |</li>
                             <li class="pending"><a href="">Chờ xét duyệt<span class="count">(0)</span> |</a></li>
                             <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li> -->
@@ -38,7 +38,7 @@
                         <table class="table list-table-wp">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Mã sản phẩm</span></td>
                                     <td><span class="thead-text">Hình ảnh</span></td>
@@ -56,7 +56,7 @@
                                 foreach ($product as $item) { 
                                     $temp++ ?>
                                     <tr>
-                                        <td><input type="checkbox" name="checkItem" class="checkItem"></td>
+                                        <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
                                         <td><span class="tbody-text"><?php echo $temp  ;?></h3></span>
                                         <td><span class="tbody-text"><?php echo $item['pro_code'];  ?></h3></span>
                                         <td>
@@ -84,7 +84,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="tfoot-text">STT</span></td>
                                     <td><span class="tfoot-text">Mã sản phẩm</span></td>
                                     <td><span class="tfoot-text">Hình ảnh</span></td>
@@ -102,7 +102,7 @@
             </div>
             <div class="section" id="paging-wp">
                 <div class="section-detail clearfix">
-                    <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
+                    <!-- <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p> -->
                     <ul id="list-paging" class="fl-right">
                     <?php 
                             echo get_pagging($num_page,$page,"?mod=product&action=list_product");

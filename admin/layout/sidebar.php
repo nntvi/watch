@@ -1,5 +1,11 @@
+<?php
+    $role = get_role_user($_SESSION['user_login']);
+?>
 <div id="sidebar" class="fl-left">
     <ul id="sidebar-menu">
+    <?php 
+        if(in_array($role['user_role'], [1, 3, 5, 7])){
+    ?>
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa fa-map icon"></span>
@@ -25,6 +31,10 @@
                 </li>
             </ul>
         </li>
+    <?php } ?>
+    <?php 
+        if(in_array($role['user_role'], [2, 3, 6 , 7])){
+    ?>
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa fa-product-hunt icon"></span>
@@ -42,6 +52,10 @@
                 </li>
             </ul>
         </li>
+    <?php } ?>
+    <?php 
+        if(in_array($role['user_role'], [4, 5, 6, 7])){
+    ?>
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa fa-database icon"></span>
@@ -56,6 +70,7 @@
                 </li>
             </ul>
         </li>
+    <?php } ?>
         <!-- <li class="nav-item">
             <a href="#" title="" class="nav-link nav-toggle">
                 <span class="fa fa-cubes icon"></span>

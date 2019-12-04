@@ -1,5 +1,5 @@
 <?php get_header(); 
-
+global $error, $success;
 ?>
 <div id="main-content-wp" class="add-cat-page">
     <div class="wrap clearfix">
@@ -10,6 +10,8 @@
                     <h3 id="index" class="fl-left">Chỉnh sửa bài viết</h3>
                 </div>
             </div>
+            <h1 style="font-size: 18px; color: red;margin-bottom: 15px;"><?php echo isset($success) ? $success : ""; ?></h1>
+
             <div class="section" id="detail-page">
                 <div class="section-detail">
                     <form method="POST"  enctype="multipart/form-data">

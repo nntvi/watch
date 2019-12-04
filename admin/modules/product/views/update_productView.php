@@ -1,4 +1,5 @@
 <?php get_header();
+global $error, $success;
 ?>
 <div id="main-content-wp" class="add-cat-page">
     <div class="wrap clearfix">
@@ -9,6 +10,7 @@
                     <h3 id="index" class="fl-left">Sửa thông tin sản phẩm</h3>
                 </div>
             </div>
+            <h1 style="font-size: 18px; color: red; margin-bottom: 15px;"><?php echo isset($success) ? $success : ""; ?></h1>
             <div class="section" id="detail-page">
                 <div class="section-detail">
                     <form method="POST" enctype="multipart/form-data">
@@ -45,6 +47,8 @@
                             <input type="file" name="file" id="upload-thumb" value="">
                             <img src="../admin/public/uploads/<?php echo $name['pro_thumb']; ?>">
                         </div>
+
+                        <p style="color:red; padding: 20px 0px;">Vui lòng chọn lại danh mục khi chỉnh sửa</p>
                         <label>Danh mục sản phẩm</label>
                         <select id="parent_id" name="parent_id">
                             <option value="-1">-- Chọn danh mục --</option>
@@ -56,7 +60,7 @@
                         <select id="sub-cat" name="sub-cat">
                             <option><?php echo $item['cat_name']; ?></option>
                         </select>
-                        <button type="submit" name="btn_update_product" id="btn-submit">Thêm mới</button>
+                        <button type="submit" name="btn_update_product" id="btn-submit">Chỉnh sửa</button>
                     </form>
                 </div>
             </div>

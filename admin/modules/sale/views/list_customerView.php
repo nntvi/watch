@@ -19,7 +19,7 @@
                             <input type="submit" name="btn_search" value="Tìm kiếm">
                         </form>
                     </div>
-                    <div class="actions">
+                    <!-- <div class="actions">
                         <form method="GET" action="" class="form-actions">
                             <select name="actions">
                                 <option value="0">Tác vụ</option>
@@ -27,12 +27,12 @@
                             </select>
                             <input type="submit" name="sm_action" value="Áp dụng">
                         </form>
-                    </div>
+                    </div> -->
                     <div class="table-responsive">
                         <table class="table list-table-wp">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Họ và tên</span></td>
                                     <td><span class="thead-text">Số điện thoại</span></td>
@@ -49,7 +49,7 @@
                                     $temp++;
                                     ?>
                                     <tr>
-                                        <td><input type="checkbox" name="checkItem" class="checkItem"></td>
+                                        <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
                                         <td><span class="tbody-text"><?php echo $temp; ?></h3></span>
                                         <td>
                                             <div class="tb-title fl-left">
@@ -70,7 +70,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="tfoot-body">STT</span></td>
                                     <td><span class="tfoot-body">Họ và tên</span></td>
                                     <td><span class="tfoot-body">Số điện thoại</span></td>

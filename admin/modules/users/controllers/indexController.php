@@ -208,50 +208,6 @@ function resetAction()
     //4. kiểm tra mk xác nhận có trùng pass mới hay không, nếu đúng
     //5. thực hiện thay đổi
 
-    /*global $error, $new_pass, $comfirm_pass;
-    if(isset($_POST['btn_changepassword'])){
-        $error = array();
-        #Kiểm tra password mới
-        if(empty($_POST['old_pass'])){
-            $error['old_pass'] = "Không để trống tên password cũ";
-        }else{
-            if(check_oldpass($_POST['old_pass'],user_login()) != 1){
-                $error['new_pass'] = "Password cũ không đúng";
-            }
-        }
-        #Kiểm tra password mới
-        if(empty($_POST['new_pass'])){
-            $error['new_pass'] = "Không để trống tên password";
-        }else{
-            if(!is_password($_POST['new_pass'])){
-                $error['new_pass'] = "Password không đúng định dạng";
-            }
-            else{
-                $new_pass = $_POST['new_pass'];
-            }
-        }
-        #Kiểm tra xác nhận
-        if(empty($_POST['comfirm_pass'])){
-            $error['new_pass'] = "Xác nhận lại password";
-        }else{
-            if($_POST['confirm_pass'] == $new_pass){
-                $confirm_pass = $_POST['confirm_pass'];
-            }
-            else{
-                $error['confirm_pass'] = "Mật khẩu xác nhận sai";
-            }
-        }
-        if (empty($error)) {
-            $data = array(
-                'password' => $confirm_pass,
-            );
-            reset_user($data,user_login());
-        }
-      else{
-        $error['account'] = "Đổi password thất bại";
-      }
-    }*/
-
     global $error, $new_pass, $confirm_pass, $old_pass;
     if (isset($_POST['btn_changepassword'])) {
         $info_user = get_user_by_username(user_login());

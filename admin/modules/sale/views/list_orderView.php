@@ -12,10 +12,10 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">(69)</span></a> |</li>
-                            <li class="publish"><a href="">Đã đăng <span class="count">(51)</span></a> |</li>
+                            <li class="all"><a href="">Tất cả <span class="count">(69)</span></a> </li>
+                            <!-- <li class="publish"><a href="">Đã đăng <span class="count">(51)</span></a> |</li>
                             <li class="pending"><a href="">Chờ xét duyệt<span class="count">(0)</span> |</a></li>
-                            <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li>
+                            <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li> -->
                         </ul>
                         <form method="POST" class="form-s fl-right" action="?mod=sale&action=search_order">
                             <input type="text" name="search" id="s">
@@ -23,7 +23,7 @@
                         </form>
                     </div>
                     <div class="actions">
-                        <form method="GET" action="" class="form-actions">
+                        <!-- <form method="GET" action="" class="form-actions">
                             <select name="actions">
                                 <option value="0">Tác vụ</option>
                                 <option value="1">Công khai</option>
@@ -31,13 +31,13 @@
                                 <option value="2">Bỏ vào thủng rác</option>
                             </select>
                             <input type="submit" name="sm_action" value="Áp dụng">
-                        </form>
+                        </form> -->
                     </div>
                     <div class="table-responsive">
                         <table class="table list-table-wp">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Mã đơn hàng</span></td>
                                     <td><span class="thead-text">Họ và tên</span></td>
@@ -55,7 +55,7 @@
                                     $temp++;
                                     ?>
                                     <tr>
-                                        <td><input type="checkbox" name="checkItem" class="checkItem"></td>
+                                        <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
                                         <td><span class="tbody-text"><?php echo $temp; ?></h3></span>
                                         <td><span class="tbody-text"><?php echo $item['order_id'] ?></h3></span>
                                         <td>
@@ -81,7 +81,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="tfoot-text">STT</span></td>
                                     <td><span class="tfoot-text">Mã đơn hàng</span></td>
                                     <td><span class="tfoot-text">Họ và tên</span></td>

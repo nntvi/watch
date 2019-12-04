@@ -5,7 +5,7 @@ function construct()
 }
 function addAction()
 {
-    global $error, $slide_name, $slide_link;
+    global $error, $slide_name, $slide_link,$success;
     if (isset($_FILES['file'])) {
         $error = array();
         //Thư mục chưa file
@@ -89,6 +89,9 @@ function addAction()
             if(!isset($data_thumb)) $data_thumb = [];
             $combine = array_merge($data, $data_thumb);
             insert_slide($combine);
+            $success = "Đã thêm thành công";
+        }else{
+            $error['post'] = "Thêm slide thất bại";
         }
     }
     load_view('add');
@@ -106,7 +109,7 @@ function listAction()
 function updateAction()
 {
     $id = $_GET['id'];
-    global $error, $link, $img, $name;
+    global $error, $link, $img, $name,$success;
     if (isset($_POST['btn_update_slider'])) {
         $error = array();
         if (empty($_POST['slide_name'])) {
@@ -185,6 +188,7 @@ function updateAction()
                 }
                 //show_array($data);
                 update_slider($data, $id);
+                $success = "Đã chỉnh sửa thành công";
             } else {
                 echo "Upload thất bại";
             }

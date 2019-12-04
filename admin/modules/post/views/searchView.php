@@ -38,7 +38,7 @@
                         <table class="table list-table-wp">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Tiêu đề</span></td>
                                     <td><span class="thead-text">Trạng thái</span></td>
@@ -56,7 +56,7 @@
                                             $temp++;
                                             ?>                                      
                                         <tr>
-                                            <td><input type="checkbox" name="checkItem" class="checkItem"></td>
+                                            <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
                                             <td><span class="tbody-text"><?php echo $temp; ?></h3></span>
                                             <td class="clearfix">
                                                 <div class="tb-title fl-left">
