@@ -56,8 +56,9 @@
             if (empty($error)) {
                 if (move_uploaded_file($_FILES['file']['tmp_name'], $upload_file)) {
                     $data_thumb = array(
-                        'post_thumb' =>  $img_new
+                        'post_thumb' =>  $img_new,
                     );
+                    print_r($data_thumb);
                 } else {
                     echo "Upload thất bại";
                 }
@@ -85,9 +86,11 @@
                     'post_status' => $status,
                     'post_date' => date("d/m/Y"),
                 );
-                $combine = array_merge($data_thumb,$data);
+                if(!isset($data_thumb)) $data_thumb = [];
+                $combine = array_merge($data,$data_thumb);
                 insert_post($combine);
                 $success = "Đã thêm thành công";
+               
             }else{
                 $error['post'] = "Thêm bài viết thất bại";
             }

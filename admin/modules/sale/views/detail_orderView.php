@@ -45,7 +45,7 @@
                                                     } ?>>Thành công</option>
                             </select>
                             <input type="submit" name="btn_update_status" value="Cập nhật đơn hàng">
-                            <input type="submit" name="btn_send_mail" style="background-color: #eb4d4b;" value="Gửi mail xác nhận">
+                            <!-- <input type="submit" name="btn_send_mail" style="background-color: #eb4d4b;" value="Gửi mail xác nhận"> -->
                         </li>
                     </form>
                 </ul>

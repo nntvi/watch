@@ -1,0 +1,7 @@
+RewriteEngine On
+
+#Trang chủ
+RewriteRule "^trang-chu$" "?mod=home&action=index" 
+#Blog
+RewriteRule "^blog$" "?mod=post&action=index" 
+RewriteRule ^blog/([a-zA-Z0-9_-]+)-([0-9]+).html$  index.php?mod=blog&action=detail&id=$2

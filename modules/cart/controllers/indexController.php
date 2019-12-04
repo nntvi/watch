@@ -40,7 +40,7 @@
 
     function deleteAction(){
         $id = $_GET['id'];
-        if(isset($_SESSION[cart])){
+        if(isset($_SESSION['cart'])){
             unset($_SESSION['cart']['buy'][$id]);
             update_info_cart();
         }
@@ -100,7 +100,7 @@
 
             $note = $_POST['note']; 
 
-            print_r($error);
+           show_array($_SESSION['cart']['buy']);
             if (empty($error)) {
                 $data_customer = array(
                     'cus_name' => $fullname,
@@ -132,8 +132,29 @@
                     }
                    
                 }
+               
+                $content = "<p style='text-align:center'>Cửa hàng ....</p>
+                <hr>
+                <p>Kính chào quý khách...</p>
+                <p>Cửa hàng vừa nhận được đơn hàng .... của quý khách đặt ngày .... với hình thức thanh toán là .... <br>
+                Chúng tôi gởi để xác nhận đơn hàng của quý khách bao gồm các sản phẩm sau:";
+
+                foreach ($_SESSION['cart']['buy'] as $item) {
+                    $content .= $item['name']."<br/>";
+                };
                 
+                $content .= "
+                Tổng giá trị sản phẩm là: ....
+                </p>";
+                sent_email($email,$fullname,"Xác nhận đơn hàng của cửa hàng....",$content);
+                //sent_email($email,$fullname,"Xác nhận đơn hàng của cửa hàng Pé Vivi",$product_name);
             }
         }
         load_view('checkout');
+    }
+
+    function SendMailAction(){
+        if(isset($_POST['checkout'])){
+
+        }
     }

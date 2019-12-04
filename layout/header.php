@@ -34,13 +34,13 @@
                         <div id="main-menu-wp" class="fl-right">
                             <ul id="main-menu" class="clearfix">
                                 <li>
-                                    <a href="?mod=home&action=index" title="">Trang chủ</a>
+                                    <a href="trang-chu" title="">Trang chủ</a>
                                 </li>
                                 <li>
                                     <a href="?mod=product&action=category" title="">Sản phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="?mod=post&action=index" title="">Blog</a>
+                                    <a href="blog" title="">Blog</a>
                                 </li>
                                 <li>
                                     <a href="?mod=page&action=detail&id=1" title="">Giới thiệu</a>
@@ -54,7 +54,7 @@
                 </div>
                 <div id="head-body" class="clearfix">
                     <div class="wp-inner">
-                        <a href="?mod=home&action=index" title="" id="logo" class="fl-left"><img src="public/images/logo.png" /></a>
+                        <a href="trang-chu" title="" id="logo" class="fl-left"><img src="public/images/logo.png" /></a>
                         <div id="search-wp" class="fl-left">
                             <form method="POST" action="">
                                 <input type="text" name="s" id="s" placeholder="Nhập từ khóa tìm kiếm tại đây!">

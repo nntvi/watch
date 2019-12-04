@@ -3,7 +3,7 @@
  * --------------------------------
  * EMAIL
  * --------------------------------
- * Trong phần này chúng ta khai báo các thông số để cấu hình
+ * Khai báo các thông số để cấu hình
  * gửi mail bằng php
  * --------------------------------
  * GIẢI THÍCH BIẾN
@@ -18,16 +18,15 @@
  * charset: Mã ký tự nội dung mail(UTF-8)
  */
 
-$email = Array(
+$config['email'] = array(
     'protocol' => 'smtp',
     'smtp_host' => 'ssl://smtp.googlemail.com',
     'smtp_port' => 465,
-    'smtp_user' => '',
-    'smtp_pass' => '',
+    'smtp_user' => 'gimi.viaibi@gmail.com',
+    'smtp_fullname' => 'Tuong Vi',
+    'smtp_pass' => 'tuongvi.',
+    'smtp_secure' => 'tls',
     'smtp_timeout' => '7',
     'mailtype' => 'html',
     'charset' => 'UTF-8'
 );
-
-
-

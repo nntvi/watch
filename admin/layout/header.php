@@ -7,6 +7,7 @@ $role = get_role_user($_SESSION['user_login']);
 <head>
     <title>Watch</title>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="public/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="public/css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
@@ -98,10 +99,10 @@ $role = get_role_user($_SESSION['user_login']);
                                                                 ?></h3>
                         </button>
                         <ul class="dropdown-menu">
-                            <?php
-                            if (in_array($role['user_role'], [7])) { ?>
-                                <li><a href="?mod=users&action=show" title="Thông tin cá nhân">Thông tin tài khoản</a></li>
-                            <?php }   ?>
+
+
+                            <li><a href="?mod=users&action=reset" title="Thông tin cá nhân">Thông tin tài khoản</a></li>
+
                             <li><a href="?mod=users&action=logout" title="Thoát">Thoát</a></li>
                         </ul>
                     </div>
