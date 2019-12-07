@@ -20,10 +20,10 @@
                             <li class="pending"><a href="">Chờ xét duyệt <span class="count">(5)</span> |</a></li>
                             <li class="trash"><a href="">Thùng rác <span class="count">(0)</span></a></li> -->
                         </ul>
-                        <form method="GET" class="form-s fl-right">
+                        <!-- <form method="GET" class="form-s fl-right">
                             <input type="text" name="s" id="s">
                             <input type="submit" name="sm_s" value="Tìm kiếm">
-                        </form>
+                        </form> -->
                     </div>
                     <!-- <div class="actions">
                         <form method="GET" action="" class="form-actions">

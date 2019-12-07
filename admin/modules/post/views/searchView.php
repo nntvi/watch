@@ -14,17 +14,17 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">(10)</span></a> |</li>
-                            <li class="publish"><a href="">Đã đăng <span class="count">(5)</span></a> |</li>
+                            <li class="all"><a href="">Tất cả <span class="count">(10)</span></a> </li>
+                            <!-- <li class="publish"><a href="">Đã đăng <span class="count">(5)</span></a> |</li>
                             <li class="pending"><a href="">Chờ xét duyệt <span class="count">(5)</span></a></li>
-                            <li class="trash"><a href="">Thùng rác <span class="count">(0)</span></a></li>
+                            <li class="trash"><a href="">Thùng rác <span class="count">(0)</span></a></li> -->
                         </ul>
                         <form method="post" class="form-s fl-right" action="?mod=post&action=search">
                             <input type="text" name="search" id="search">
                             <input type="submit" name="btn_search" value="Tìm kiếm">
                         </form>
                     </div>
-                    <div class="actions">
+                    <!-- <div class="actions">
                         <form method="GET" action="" class="form-actions">
                             <select name="actions">
                                 <option value="0">Tác vụ</option>
@@ -33,7 +33,7 @@
                             </select>
                             <input type="submit" name="sm_action" value="Áp dụng">
                         </form>
-                    </div>
+                    </div> -->
                     <div class="table-responsive">
                         <table class="table list-table-wp">
                             <thead>

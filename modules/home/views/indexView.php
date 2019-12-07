@@ -73,8 +73,8 @@
                                 <span class="old"><?php echo number_format($hot['pro_price_old']).' đ'?></span>
                             </div>
                             <div class="action clearfix">
-                                <a href="?mod=cart&action=index&id={$hot['pro_id']}" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="?mod=cart&action=checkoutid={$hot['pro_id']}" title="" class="buy-now fl-right">Mua ngay</a>
+                                <a href="product-<?php echo $hot['pro_id']?>" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                <a href="checkout-<?php echo $hot['pro_id'] ?>" title="" class="buy-now fl-right">Mua ngay</a>
                             </div>
                         </li>
                         <?php }?>
@@ -110,7 +110,7 @@
                                 <span class="old"><?php echo number_format($p['pro_price_old']) . 'đ'?></span>
                             </div>
                             <div class="action clearfix">
-                                <a href="?mod=cart&action=indexid={$p['pro_id']}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                <a href="giohang/product-<?php echo $p['pro_id']?>.html" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
                                 <a href="?mod=cart&action=checkoutid={$p['pro_id']}" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                             </div>
                         </li>      

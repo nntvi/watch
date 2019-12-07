@@ -14,7 +14,7 @@
                         echo '<ul class="sub-menu">';
                         foreach ($c['children'] as $c2)
                             echo '<li>
-                                            <a href="?mod=home&action=category&id=' . $c2['cat_id'] . '" title="">' . $c2['cat_name'] . '</a>
+                                            <a href="menu-parent-' . $c2['cat_id'] . '" title="">' . $c2['cat_name'] . '</a>
                                         </li>';
                         echo '</ul>';
                     }

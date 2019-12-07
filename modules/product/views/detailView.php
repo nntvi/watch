@@ -62,7 +62,7 @@
                             <input type="text" name="num-order" value="1" id="num-order">
                             <a title="" id="plus"><i class="fa fa-plus"></i></a>
                         </div>
-                        <a href="?mod=cart&action=index&id=<?php echo $item['pro_id'] ?>" title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</a>
+                        <a href="giohang/product-<?php echo $item['pro_id'] ?>.html" title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</a>
                     </div>
                 </div>
             </div>
@@ -94,8 +94,8 @@
                                 <!--<span class="old">20.900.000đ</span>-->
                             </div>
                             <div class="action clearfix">
-                                <a href="?mod=cart&action=index&id=<?php echo $s_category['pro_id'] ?>" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="" title="" class="buy-now fl-right">Mua ngay</a>
+                                <a href="giohang/product-<?php echo $s_category['pro_id'] ?>.html" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                <a href="checkout-<?php echo $s_category['pro_id'] ?>" title="" class="buy-now fl-right">Mua ngay</a>
                             </div>
                         </li>
                     <?php } ?>

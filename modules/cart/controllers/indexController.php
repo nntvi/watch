@@ -100,7 +100,7 @@
 
             $note = $_POST['note']; 
 
-           show_array($_SESSION['cart']['buy']);
+        //    show_array($_SESSION['cart']['buy']);
             if (empty($error)) {
                 $data_customer = array(
                     'cus_name' => $fullname,

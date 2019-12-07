@@ -18,3 +18,12 @@
     {
         return db_fetch_array("SELECT * FROM `tbl_products` order by pro_view desc limit 7");
     }
+
+    function result_search($name){
+        $item = db_num_rows("SELECT * FROM `tbl_products` WHERE `pro_name` LIKE '%{$name}%'");
+        return $item;
+    }
+    function get_search($name){
+        $list_search = db_fetch_array("SELECT * FROM `tbl_products` WHERE `pro_name` LIKE '%{$name}%'");
+        return $list_search;
+    }

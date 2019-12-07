@@ -25,20 +25,28 @@
                         <div class="form-col fl-left">
                             <label for="fullname">Họ tên</label>
                             <input type="text" name="fullname" id="fullname">
+                            <p class="error"><?php echo form_error('fullname'); ?></p>
+
                         </div>
                         <div class="form-col fl-right">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email">
+                            <p class="error"><?php echo form_error('email'); ?></p>
+
                         </div>
                     </div>
                     <div class="form-row clearfix">
                         <div class="form-col fl-left">
                             <label for="address">Địa chỉ</label>
                             <input type="text" name="address" id="address">
+                            <p class="error"><?php echo form_error('address'); ?></p>
+
                         </div>
                         <div class="form-col fl-right">
                             <label for="phone">Số điện thoại</label>
                             <input type="tel" name="phone" id="phone">
+                            <p class="error"><?php echo form_error('phone'); ?></p>
+
                         </div>
                     </div>
                     <div class="form-row">

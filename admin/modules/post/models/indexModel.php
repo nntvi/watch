@@ -48,9 +48,6 @@ function get_post($start = 1, $num_per_page = 10, $where = "")
     return $list_post;
 }
 
-
-
-
 #Xử lí tìm kiếm
 function result_search($str){
     $item = db_num_rows("SELECT * FROM `tbl_posts` WHERE `post_title` LIKE '%{$str}%'");

@@ -2,6 +2,30 @@ RewriteEngine On
 
 #Trang chủ
 RewriteRule "^trang-chu$" "?mod=home&action=index" 
+
+#Sản phẩm
+RewriteRule "^san-pham$" "?mod=product&action=category" 
+
 #Blog
 RewriteRule "^blog$" "?mod=post&action=index" 
 RewriteRule ^blog/([a-zA-Z0-9_-]+)-([0-9]+).html$  index.php?mod=blog&action=detail&id=$2
+
+#Giới thiệu
+RewriteRule "^gioi-thieu$" "?mod=page&action=detail&id=1" 
+
+
+#Liên hệ
+RewriteRule "^lien-he$" "?mod=page&action=detail&id=2" 
+
+
+#Tìm kiếm
+RewriteRule "^tim-kiem$" "?mod=home&action=search" 
+
+#Danh mục
+RewriteRule "^menu-parent-([0-9]+)$" "?mod=home&action=category&id=$1" 
+
+#Sản phẩm
+RewriteRule ^giohang/([a-zA-Z0-9_-]+)-([0-9]+).html$  index.php?mod=cart&action=index&id=$2
+
+#Checkout
+RewriteRule "^checkout-([0-9]+)$" "?mod=cart&action=checkout&id=$1" 

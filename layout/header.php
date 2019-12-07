@@ -7,6 +7,7 @@
 <head>
     <title>WATCH STORE</title>
     <meta charset="UTF-8">
+    <base href="<?php echo base_url(); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="public/css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="public/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -16,7 +17,6 @@
     <link href="public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="public/style.css" rel="stylesheet" type="text/css" />
     <link href="public/responsive.css" rel="stylesheet" type="text/css" />
-
     <script src="public/js/jquery-2.2.4.min.js" type="text/javascript"></script>
     <script src="public/js/elevatezoom-master/jquery.elevatezoom.js" type="text/javascript"></script>
     <script src="public/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
@@ -37,16 +37,16 @@
                                     <a href="trang-chu" title="">Trang chủ</a>
                                 </li>
                                 <li>
-                                    <a href="?mod=product&action=category" title="">Sản phẩm</a>
+                                    <a href="san-pham" title="">Sản phẩm</a>
                                 </li>
                                 <li>
                                     <a href="blog" title="">Blog</a>
                                 </li>
                                 <li>
-                                    <a href="?mod=page&action=detail&id=1" title="">Giới thiệu</a>
+                                    <a href="gioi-thieu" title="">Giới thiệu</a>
                                 </li>
                                 <li>
-                                    <a href="?mod=page&action=detail&id=2" title="">Liên hệ</a>
+                                    <a href="lien-he" title="">Liên hệ</a>
                                 </li>
                             </ul>
                         </div>
@@ -56,9 +56,9 @@
                     <div class="wp-inner">
                         <a href="trang-chu" title="" id="logo" class="fl-left"><img src="public/images/logo.png" /></a>
                         <div id="search-wp" class="fl-left">
-                            <form method="POST" action="">
-                                <input type="text" name="s" id="s" placeholder="Nhập từ khóa tìm kiếm tại đây!">
-                                <button type="submit" id="sm-s">Tìm kiếm</button>
+                            <form method="POST" action="tim-kiem">
+                                <input type="text" name="search" id="s" placeholder="Nhập từ khóa tìm kiếm tại đây!">
+                                <button type="submit" id="sm-s" name="btn_search">Tìm kiếm</button>
                             </form>
                         </div>
                         <div id="action-wp" class="fl-right">
@@ -104,7 +104,7 @@
                                     </ul>
                                     <div class="total-price clearfix">
                                         <p class="title fl-left">Tổng:</p>
-                                        <p class="price fl-right"><?php echo $_SESSION['cart']['info']['total']; ?></p>
+                                        <p class="price fl-right"><?php echo isset($_SESSION['cart']['info']['total']) ? $_SESSION['cart']['info']['total'] : "" ?></p>
                                     </div>
                                     
                                     <dic class="action-cart clearfix">

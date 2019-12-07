@@ -19,7 +19,7 @@ global $error, $success;
                         <label for="desc">Nội dung</label>
                         <textarea name="detail" id="desc" class="ckeditor"></textarea>
                         <label>Hình ảnh</label>
-                        <div id="uploadFile" enctype="multipart/form-data">
+                        <div id="uploadFile">
                             <input type="file" name="file" id="upload-thumb">
                             <!--<input type="submit" name="btn-upload-thumb" value="Upload" id="btn-upload-thumb">-->
                             <!--<img src="public/images/img-thumb.png">-->
