@@ -6,7 +6,7 @@ $request_path = MODULESPATH . DIRECTORY_SEPARATOR . get_module() . DIRECTORY_SEP
 if (file_exists($request_path)) {
     require $request_path;
 } else {
-    echo "Không tìm thấy:$request_path ";
+    echo "Không tìm thấy: $request_path ";
 }
 
 $action_name = get_action() . 'Action';

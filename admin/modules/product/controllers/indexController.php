@@ -1,16 +1,15 @@
 <?php
 
-use function JmesPath\search;
-
 function construct()
 {
     load_model('index');
     load('helper', 'pagging');
 }
-# Thêm danh mục
+
+# Thêm danh mục cha
 function add_catAction()
 {
-    global $error, $cat_name,$success;
+    global $error, $cat_name, $success;
     if (isset($_POST['btn_add_cat'])) {
         $error = array();
         if (empty($_POST['cat_name'])) {
@@ -34,7 +33,7 @@ function add_catAction()
 # Thêm danh mục cha
 function add_cat_parentAction()
 {
-    global $error, $cat_name_parent, $parent_cat,$success;
+    global $error, $cat_name_parent, $parent_cat, $success;
     if (isset($_POST['btn_cat_parent'])) {
         $error = array();
         if (empty($_POST['cat_name_parent'])) {
@@ -44,7 +43,7 @@ function add_cat_parentAction()
         }
 
         if (empty($_POST['parent_cat'])) {
-            $error['parent_cat'] = "Không để trống tên danh mục";
+            $error['parent_cat'] = "Không để trống tên danh mục cha";
         } else {
             $parent_cat = $_POST['parent_cat'];
         }
@@ -77,7 +76,7 @@ function list_cat_productAction()
 function updatecatAction()
 {
     $id = $_GET['id'];
-    global $error, $new_cat_name,$success;
+    global $error, $new_cat_name, $success;
     if (isset($_POST['btn_update_cat'])) {
         $error = array();
 
@@ -116,19 +115,20 @@ function deletecatAction()
     }
     redirect("?mod=product&action=list_cat_product");
 }
-# Lấy danh mục sử dụng ajax
+# Lấy danh mục sử dụng ajax cho việc chọn danh mục
 function getSubCatAction()
 {
-    $id = $_GET['id'];
-    $data = get($id);
+    $id = $_GET['id']; // lấy id danh mục cha
+    $data = get($id); // lấy ra những danh mục con nào có trùng parent_cat với id vừa lấy
     echo json_encode($data);
 }
 
 # Thêm sản phẩm
 function addAction()
 {
-    global $pro_name, $pro_code, $pro_price,$pro_old_price,
-        $pro_desc, $pro_detail, $error, $sub_cat, $gender,$gender,$success;
+    global $pro_name, $pro_code, $pro_price, $pro_old_price, $pro_number,
+        $pro_desc, $pro_detail, $error, $sub_cat, $gender,
+        $gender, $success, $price_import;
     #Xử lý hình ảnh
     if (isset($_FILES['file'])) {
         $error = array();
@@ -186,7 +186,7 @@ function addAction()
                 echo "Upload thất bại";
             }
         } else {
-            print_r($error);
+            //print_r($error);
         }
     }
     if (isset($_POST['btn_add_product'])) {
@@ -203,24 +203,30 @@ function addAction()
             $pro_code = $_POST['product_code'];
         }
 
+        if (empty($_POST['product_price_import'])) {
+            $error['product_price_import'] = "Không để trống giá nhập sản phẩm";
+        } else {
+            $price_import = $_POST['product_price_import'];
+        }
+
         if (empty($_POST['product_price'])) {
-            $error['product_price'] = "Không để trống giá sản phẩm";
+            $error['product_price'] = "Không để trống giá bán sản phẩm";
+        } else if ($_POST['product_price'] < $price_import) {
+            $error['product_price'] = "Giá bán không nhỏ hơn giá nhập";
         } else {
             $pro_price = $_POST['product_price'];
         }
-
-        
         $pro_old_price = $_POST['product_old_price'];
-        
+
         if (empty($_POST['product_desc'])) {
             $error['product_desc'] = "Không để trống mô tả ngắn";
         } else {
             $pro_desc = $_POST['product_desc'];
         }
 
-        
+
         $pro_detail = $_POST['product_detail'];
-        
+
 
         if (empty($_POST['parent_id'])) {
             $error['parent_id'] = "Bạn chưa chọn danh mục sản phẩm .Mời bạn kiểm tra lại!!!";
@@ -239,16 +245,28 @@ function addAction()
             $gender = $_POST['gender'];
         }
 
+        if (empty(isset($_POST['product_number']))) {
+            $error['product_number'] = "Không để số lượng nhập";
+        } else {
+            $pro_number = $_POST['product_number'];
+        }
+
         if (empty($error)) {
             $data = array(
                 'pro_name' => $pro_name,
                 'pro_code' => $pro_code,
+                'price_import' => $price_import,
                 'pro_price' => $pro_price,
                 'pro_price_old' => $pro_old_price,
                 'pro_desc' => $pro_desc,
                 'pro_gender' => $gender,
                 'pro_detail' => $pro_detail,
                 'pro_time' => date("d/m/Y"),
+                'pro_day' => date('d'),
+                'pro_month' => date('m'),
+                'pro_year' => date('Y'),
+                'pro_number' => $pro_number,
+                'pro_remain' => $_POST['product_number'],
                 'cat_id' => $sub_cat
             );
 
@@ -264,7 +282,7 @@ function list_productAction()
 {
     $num_rows = db_num_rows("SELECT tbl_products.*, tbl_cat_product.cat_name FROM tbl_products INNER JOIN tbl_cat_product ON tbl_products.cat_id = tbl_cat_product.cat_id");
     # Số lượng bản ghi trên trang
-    $num_per_page = 5;
+    $num_per_page = 6;
     $total_row = $num_rows;
 
     #Tính tổng số trang
@@ -280,6 +298,7 @@ function list_productAction()
     $data['page'] = $page;
     $data['num_page'] = $num_page;
     $data['product'] = $list_pro;
+    $data['count'] = count_pro();
     load_view('list_product', $data);
 }
 
@@ -288,8 +307,9 @@ function update_productAction()
 {
     $id = $_GET['id'];
     // echo $id;
-    global $pro_name, $pro_code, $pro_price,
-        $pro_desc, $pro_detail, $error, $sub_cat, $gender,$success;
+    global $pro_name, $pro_code, $pro_price, $pro_old_price, $pro_number,
+        $pro_desc, $pro_detail, $error, $sub_cat, $gender,
+        $gender, $success, $price_import;
     if (isset($_POST['btn_update_product'])) {
         $error = array();
         if (empty($_POST['product_name'])) {
@@ -299,28 +319,39 @@ function update_productAction()
         }
 
         if (empty($_POST['product_code'])) {
-            $error['product_code'] = "Không để trống tên sản phẩm";
+            $error['product_code'] = "Không để trống mã sản phẩm";
         } else {
             $pro_code = $_POST['product_code'];
         }
+        if (empty($_POST['product_price_import'])) {
+            $error['product_price_import'] = "Không để trống giá nhập sản phẩm";
+        } else {
+            $price_import = $_POST['product_price_import'];
+        }
 
         if (empty($_POST['product_price'])) {
-            $error['product_price'] = "Không để trống tên sản phẩm";
+            $error['product_price'] = "Không để trống giá bán sản phẩm";
+        } else if ($_POST['product_price'] < $price_import) {
+            $error['product_price'] = "Giá bán không nhỏ hơn giá nhập";
         } else {
             $pro_price = $_POST['product_price'];
         }
 
         if (empty($_POST['product_desc'])) {
-            $error['product_desc'] = "Không để trống tên sản phẩm";
+            $error['product_desc'] = "Không để trống mô tả ngắn";
         } else {
             $pro_desc = $_POST['product_desc'];
         }
-
-        if (empty($_POST['product_detail'])) {
-            $error['product_detail'] = "Không để trống tên sản phẩm";
+        
+        if (empty(isset($_POST['product_number']))) {
+            $error['product_number'] = "Không để số lượng nhập";
         } else {
-            $pro_detail = $_POST['product_detail'];
+            $pro_number = $_POST['product_number'];
         }
+
+
+        $pro_detail = $_POST['product_detail'];
+
 
         if (empty($_POST['parent_id'])) {
             $error['parent_id'] = "Bạn chưa chọn danh mục sản phẩm .Mời bạn kiểm tra lại!!!";
@@ -332,9 +363,9 @@ function update_productAction()
         } else {
             $sub_cat = $_POST['sub-cat'];
         }
-       
+
         $gender = $_POST['gender'];
-        
+
         #Xử lý hình ảnh và upload
         if (isset($_FILES['file']) && strlen($_FILES['file']['name']) > 0) {
             $error = array();
@@ -391,23 +422,30 @@ function update_productAction()
                 $data = array(
                     'pro_name' => $pro_name,
                     'pro_code' => $pro_code,
+                    'price_import' => $price_import,
                     'pro_price' => $pro_price,
+                    'pro_price_old' => $pro_old_price,
                     'pro_desc' => $pro_desc,
                     'pro_gender' => $gender,
                     'pro_detail' => $pro_detail,
                     'pro_time' => date("d/m/Y"),
+                    'pro_day' => date('d'),
+                    'pro_month' => date('m'),
+                    'pro_year' => date('Y'),
+                    'pro_number' => $pro_number,
+                    'pro_remain' => $pro_number,
                     'cat_id' => $sub_cat
                 );
                 if (isset($_FILES['file']) && strlen($_FILES['file']['name']) > 0) {
                     $data['pro_thumb'] =  $img_new;
                 }
                 //show_array($data);
-               update_product($data, $id);
-               $success = "Đã chỉnh sửa sản phẩm thành công";
+                update_product($data, $id);
+                $success = "Đã chỉnh sửa sản phẩm thành công";
             } else {
                 echo "Upload thất bại";
             }
-        }else{
+        } else {
             print_r($error);
         }
     }
@@ -418,39 +456,42 @@ function update_productAction()
 }
 
 # Xóa sản phẩm
-function delete_productAction(){
+function delete_productAction()
+{
     $id = $_GET['id'];
     delete_product($id);
     redirect("?mod=product&action=list_product");
 }
 
-function searchAction(){
+function searchAction()
+{
     global $error, $str;
-    if(isset($_POST['btn_search'])){
+    if (isset($_POST['btn_search'])) {
         $str = '';
         $error = array();
-        if(empty($_POST['search'])){
+        if (empty($_POST['search'])) {
             $error['search'] = "Nhập từ khoá tìm kiếm";
-        }else{
+        } else {
             $str = $_POST['search'];
         }
     }
     // nếu tìm kiếm thấy có trong bảng
-    if(result_search($str) > 0){ // nghĩa là tìm thấy dữ liệu cần tìm trong bảng
+    if (result_search($str) > 0) { // nghĩa là tìm thấy dữ liệu cần tìm trong bảng
         // lấy dữ liệu tìm thấy ra
         //$list_search = get_list_search($str);
         // gán link để có thể xoá sửa
         //foreach($list_search as &$item){
-           // $item['url_update'] = "?mod=post&action=update&id={$item['post_id']}";
-           // $item['url_delete'] = "?mod=post&action=delete&id={$item['post_id']}";
+        // $item['url_update'] = "?mod=post&action=update&id={$item['post_id']}";
+        // $item['url_delete'] = "?mod=post&action=delete&id={$item['post_id']}";
         //}
         $search = get_search($str);
         //show_array($list_search);
-        foreach ($search as &$item){
+        foreach ($search as &$item) {
             $item['url_update'] = "?mod=product&action=update_product&id={$item['pro_id']}";
             $item['url_delete'] = "?mod=product&action=delete_product&id={$item['pro_id']}";
         }
     }
     $data['search'] = isset($search) ? $search : null;
-    load_view('search',$data);
+    $data['count'] = count_search_pro($str);
+    load_view('search', $data);
 }

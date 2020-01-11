@@ -1,5 +1,5 @@
 <?php get_header();
-
+global $error, $success;
 ?>
 <div id="main-content-wp" class="add-cat-page">
     <div class="wrap clearfix">
@@ -10,6 +10,8 @@
                     <h3 id="index" class="fl-left">Thêm mới admin</h3>
                 </div>
             </div>
+            <h1 style="font-size: 18px; color: red; margin-bottom: 15px;"><?php echo isset($success) ? $success : ""; ?></h1>
+
             <div class="section" id="detail-page">
                 <div class="section-detail">
                     <form method="POST">
@@ -42,7 +44,7 @@
                         <input type="checkbox" name="role1" id="" value="1"> Quản lý bài viết
                         <input type="checkbox" name="role2" id="" value="2"> Quản lý sản phẩm
                         <input type="checkbox" name="role3" id="" value="4"> Quản lý bán hàng
-                       
+                        <p class="error"><?php echo form_error('role'); ?></p>
 
                         <!-- <select name="role" id="">
                             <option value="1">Quản lý bài viết</option>
@@ -54,7 +56,7 @@
                             <input type="file" name="file" id="upload-thumb">
                         </div>-->
                         
-                        <button type="submit" name="btn_adduser" id="btn-submit">Thêm admin</button>
+                        <button type="submit" name="btn_adduser" id="btn-submit" style="margin-top: 20px;">Thêm admin</button>
                         <p class="error"><?php echo set_value('account'); ?></p>
                     </form>
                 </div>

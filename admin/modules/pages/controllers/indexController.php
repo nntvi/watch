@@ -23,11 +23,11 @@
             }else{
                 $title = $_POST['title'];
             }
-            if(empty($_POST['slug'])){
-                $error['slug'] = "Không để trống trường này";
-            }else{
-                $slug = $_POST['slug'];
-            }
+            // if(empty($_POST['slug'])){
+            //     $error['slug'] = "Không để trống trường này";
+            // }else{
+            //     $slug = $_POST['slug'];
+            // }
             if(empty($_POST['detail'])){
                 $error['detail'] = "Không để trống trường này";
             }else{
@@ -37,10 +37,10 @@
             if(empty($error)){
                 $data = array(
                     'page_title' => $title,
-                    'page_slug' => $slug,
+                    // 'page_slug' => $slug,
                     'page_detail' => $detail,
                 );
-                upload_page($data,$id);
+                update_page($data,$id);
                 $success = "Đã chỉnh sửa thành công";
             }
         }else{

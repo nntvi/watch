@@ -1,15 +1,14 @@
-<?php get_header();
-?>
+<?php get_header(); ?>
 <div id="main-content-wp" class="cart-page">
     <div class="section" id="breadcrumb-wp">
         <div class="wp-inner">
             <div class="section-detail">
                 <ul class="list-item clearfix">
                     <li>
-                        <a href="?page=home" title="">Trang chủ</a>
+                        <a href="?mod=home&action=index" title="">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="" title="">Sản phẩm làm đẹp da</a>
+                        <a href="?mod=cart&action=show" title="">Giỏ hàng</a>
                     </li>
                 </ul>
             </div>
@@ -41,13 +40,13 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="" title="" class="name-product"><?php echo $item['name']; ?></a>
+                                            <a href="detail-product-<?php echo $item['product_id'];?>.html" title="" class="name-product"><?php echo $item['name']; ?></a>
                                         </td>
-                                        <td><?php echo $item['price']; ?></td>
+                                        <td><?php echo number_format($item['price']).' đ' ?></td>
                                         <td>
-                                            <input type="number" min="1" max="10" name="qty[<?php echo $item['product_id']; ?>]" value="<?php echo $item['qty']; ?>" class="num-order">
+                                            <input type="number" min="1" max="<?php echo $item['limit'];?>" name="qty[<?php echo $item['product_id']; ?>]" value="<?php echo $item['qty']; ?>" class="num-order">
                                         </td>
-                                        <td><?php echo $item['sub_total']; ?></td>
+                                        <td><?php echo number_format($item['sub_total']).' đ' ?></td>
                                         <td>
                                             <a href="?mod=cart&action=delete&id=<?php echo $item['product_id'];?>" title="Xóa sản phẩm" class="del-product"><i class="fa fa-trash-o"></i></a>
                                         </td>
@@ -59,7 +58,7 @@
                                 <tr>
                                     <td colspan="7">
                                         <div class="clearfix">
-                                            <p id="total-price" class="fl-right">Tổng giá: <span><?php echo $_SESSION['cart']['info']['total']; ?></span></p>
+                                            <p id="total-price" class="fl-right">Tổng giá: <span><?php echo number_format($_SESSION['cart']['info']['total']).' đ'; ?></span></p>
                                         </div>
                                     </td>
                                 </tr>
@@ -80,13 +79,14 @@
             </div>
             <div class="section" id="action-cart-wp">
                 <div class="section-detail">
-                    <p class="title">Click vào <span>“Cập nhật giỏ hàng”</span> để cập nhật số lượng. Nhập vào số lượng <span>0</span> để xóa sản phẩm khỏi giỏ hàng. Nhấn vào thanh toán để hoàn tất mua hàng.</p>
-                    <a href="?page=home" title="" id="buy-more">Mua tiếp</a><br />
+                    <p class="title">Click vào <span>“Cập nhật giỏ hàng”</span> để cập nhật số lượng.
+                    <a href="trang-chu" title="" id="buy-more">Mua tiếp</a><br />
                     <a href="?mod=cart&action=deleteall" title="" id="delete-cart">Xóa giỏ hàng</a>
                 </div>
             </div>
         <?php } else {  ?>
-            <?php echo "Bạn không có thông tin trong giỏ hàng"; ?>
+            <p style="text-align:center;font-size:20px;padding-bottom: 8px;">Bạn chưa có thông tin giỏ hàng</p>
+            <a href="trang-chu"><p style="text-align:center;font-size:20px">Bấm vào đây để quay lại trang chủ!!!</p></a>
         <?php } ?>
     </div>
 </div>

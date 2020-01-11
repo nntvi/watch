@@ -13,7 +13,7 @@ function db_connect()
 
 }
 
-//Thực thi chuổi truy vấn
+//Thực thi chuổi truy vấn, sử dụng cho các hàm dưới
 function db_query($query_string)
 {
     global $conn;
@@ -58,6 +58,7 @@ function db_num_rows($query_string)
 function db_insert($table, $data)
 {
     global $conn;
+    // implode để nối các key trong mảng = dấu ,
     $fields = "(" . implode(", ", array_keys($data)) . ")";
     $values = "";
     foreach ($data as $field => $value) {
@@ -66,6 +67,7 @@ function db_insert($table, $data)
         else
             $values .= "'" . escape_string($value) . "', ";
     }
+    // substr để lấy chuỗi values từ thứ tự đầu tiên, chiều dài là -2 => lấy hết
     $values = substr($values, 0, -2);
     db_query("
             INSERT INTO $table $fields
@@ -100,7 +102,12 @@ function db_delete($table, $where)
     db_query($query_string);
     return mysqli_affected_rows($conn);
 }
-
+function db_delete_all($table){
+    global $conn;
+    $query_string = "DELETE FROM " . $table;
+    db_query($query_string);
+    return mysqli_affected_rows($conn);
+}
 function escape_string($str)
 {
     global $conn;

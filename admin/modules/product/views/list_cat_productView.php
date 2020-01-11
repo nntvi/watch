@@ -36,6 +36,7 @@
                                         <td><span class="tbody-text"><?php echo $temp++; ?></h3></span>
                                         <td class="clearfix">
                                             <div class="tb-title fl-left">
+                                            <!-- Nếu mà level = 1 thì 3 dấu gạch sẽ lặp lại 1 lần => sẽ thành danh mục con -->
                                             <a href="" title=""><?php echo str_repeat('---', $item['level']) . $item['cat_name']; ?></a>
                                             </div>
                                             <ul class="list-operation fl-right">

@@ -7,7 +7,7 @@ function show_page(){
     return $pages;
 }
 
-function upload_page($data,$id){
+function update_page($data,$id){
     db_update('tbl_pages',$data,"`page_id` = {$id}");
 }
 ?>

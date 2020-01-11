@@ -18,9 +18,9 @@ global $error, $success;
                         <input type="text" name="title" id="title" value="<?php echo $item['page_title'];  ?>">
                         <p class="error"><?php echo form_error('title'); ?></p>
 
-                        <label for="title">Slug ( Friendly_url )</label>
+                        <!-- <label for="title">Slug ( Friendly_url )</label>
                         <input type="text" name="slug" id="slug" value="<?php echo $item['page_slug'];  ?>">
-                        <p class="error"><?php echo form_error('slug'); ?></p>
+                        <p class="error"><?php echo form_error('slug'); ?></p> -->
 
                         <label for="desc">Mô tả</label>
                         <textarea name="detail" id="desc" class="ckeditor"><?php echo $item['page_detail'];  ?></textarea>

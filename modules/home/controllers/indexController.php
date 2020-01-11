@@ -7,21 +7,41 @@ function construct()
 
 function indexAction()
 {
+   
     $data['cat'] = get_name_cat(); // lấy tên danh mục cha
     $data['pro_hot'] = get_product_hot(); // lấy sản phẩm có lượt xem cao
+    $data['slide'] = show_slide();
+    
     load_view('index', $data);
 }
 function categoryAction()
 {
     $id = $_GET['id'];
-    $data['product'] = get_product_cat($id);
+    $num_rows = db_num_rows("SELECT * FROM `tbl_products` WHERE cat_id = {$id}");
+    # Số lượng bản ghi trên trang
+    $num_per_page = 3;
+    $total_row = $num_rows;
+
+    #Tính tổng số trang
+    $num_page = ceil($total_row / $num_per_page);
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+    $start = ($page - 1) * $num_per_page;
+    #Hàm xử lý show toàn bộ info và phân trang
+    $list_pro = get_item($start, $num_per_page, $id);
+
+    $data['product'] = $list_pro;
+    $data['page'] = $page;
+    $data['num_page'] = $num_page;
+    $data['slide'] = show_slide();
+
     load_view('category', $data);
 }
 function filterAction()
 {
     // $id_cat = $_GET['id'];
-
-    load_view('filter');
+    $data['slide'] = show_slide();
+    // xử lý ajax ở main.js
+    load_view('filter',$data);
 }
 
 function searchfilterAction()
@@ -44,16 +64,16 @@ function searchfilterAction()
         $data = "";
         foreach ($string as $item) {
             $data .= "<li>
-                        <a href='?page=detail_product' title=' class='thumb'>
-                            <img src='../project/admin/public/uploads/" . $item['pro_thumb'] . "'>
+                        <a href= '?mod=product&action=detail&id=". $item['pro_id'] ."' title=' class='thumb'>
+                            <img src='../watch/admin/public/uploads/" . $item['pro_thumb'] . "'>
                         </a>
-                        <a href='?page=detail_product' title=' class='product-name'>" . $item['pro_name'] . "</a>
+                        <a href='?mod=product&action=detail&id=" . ($item['pro_id']) ."' title=' class='product-name'>" . $item['pro_name'] . "</a>
                         <div class='price'>
-                            <span class='new'>" . $item['pro_price'] . "</span>
+                            <span class='new'>" . number_format($item['pro_price']).' đ' . "</span>
                         </div>
                         <div class='action clearfix'>
-                            <a href='?page=cart' title='Thêm giỏ hàng' class='add-cart fl-left'>Thêm giỏ hàng</a>
-                            <a href='?page=checkout' title='Mua ngay' class='buy-now fl-right'>Mua ngay</a>
+                            <a href='giohang/product-". $item['pro_id'] .".html' title='Thêm giỏ hàng' class='add-cart fl-left'>Thêm giỏ hàng</a>
+                            <a href='?mod=cart&action=buyNow&id=" . $item['pro_id'] . "' title='Mua ngay' class='buy-now fl-right'>Mua ngay</a>
                         </div>
                     </li>";
         }
@@ -69,14 +89,17 @@ function searchAction()
         $error = array();
         if (!empty($_POST['search'])) {
             $name = $_POST['search'];
+            //$s = vn_to_str($name);
+            //print_r($s);
+            $b = str_replace(' ','%',$name);
         }
     }
-    if (result_search($name) > 0) {
-        $search = get_search($name);
-        $title_search = $name;
+    if (isset($b)) {
+        $search = get_search($b);
+        $title_search = $b;
     }
 
-    $data['search'] = isset($search) ? $search : null ;
+    $data['search'] = isset($search) ? $search : null;
     $data['name'] = $title_search;
-    load_view('search',$data);
+    load_view('search', $data);
 }

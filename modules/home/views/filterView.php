@@ -1,18 +1,18 @@
 <?php get_header(); ?>
+
 <div id="main-content-wp" class="home-page clearfix">
     <div class="wp-inner">
         <div class="main-content fl-right">
             <div class="section" id="slider-wp">
                 <div class="section-detail">
-                    <div class="item">
-                        <img src="public/images/slider-01.png" alt="">
-                    </div>
-                    <div class="item">
-                        <img src="public/images/slider-02.png" alt="">
-                    </div>
-                    <div class="item">
-                        <img src="public/images/slider-03.png" alt="">
-                    </div>
+                    <?php
+                    foreach ($slide as $item) { ?>
+                        <div class="item">
+                            <a href="http://localhost/watch/detail-product-35.html" target="_blank" rel="noopener noreferrer">
+                                <img src="../watch/admin/public/uploads/<?php echo $item['slide_thumb'] ?>" alt="">
+                            </a>
+                        </div>
+                    <?php   } ?>
                 </div>
             </div>
             <div class="section" id="support-wp">
@@ -56,12 +56,12 @@
                     </ul>
                 </div>
             </div>
-           
+
             <div class="section" id="list-product-wp">
                 <div class="section-head">
                     <h3 class="section-title"></h3>
                 </div>
-                
+
                 <div class="section-detail">
                     <ul class="list-item clearfix" id="filter">
 

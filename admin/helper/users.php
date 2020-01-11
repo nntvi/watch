@@ -18,6 +18,11 @@ function user_login()
     return false;
 }
 
+function countannounce()
+{
+    $thongbao = db_fetch_row("SELECT COUNT(tbl_orders.note) as sl FROM `tbl_orders` WHERE note = 0");
+    return $thongbao;
+}
 //Trả về fullname
 /*function info_user($field = 'id')
 {

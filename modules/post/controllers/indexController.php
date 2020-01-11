@@ -5,7 +5,7 @@
        load('helper', 'pagging');
    }
     function indexAction(){
-        $num_rows = db_num_rows("SELECT * FROM `tbl_posts`");
+        $num_rows = db_num_rows("SELECT * FROM `tbl_posts` WHERE post_status = '1'");
         # Số lượng bản ghi trên trang
         $num_per_page = 3;
         $total_row = $num_rows;

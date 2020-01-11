@@ -18,8 +18,8 @@ global $error, $success;
                         <label for="title">Tên slider</label>
                         <input type="text" name="slide_name" id="title">
                         <p class="error"><?php form_error('slide_name'); ?></p>
-                        <label for="title">Link</label>
-                        <input type="text" name="slide_link" id="slug">
+                        <!-- <label for="title">Link</label>
+                        <input type="text" name="slide_link" id="slug"> -->
                         <!-- <label for="desc">Mô tả</label>
                         <textarea name="slide_" id="desc" class="ckeditor"></textarea> -->
                         <!-- <label for="title">Thứ tự</label>

@@ -24,8 +24,17 @@ RewriteRule "^tim-kiem$" "?mod=home&action=search"
 #Danh mục
 RewriteRule "^menu-parent-([0-9]+)$" "?mod=home&action=category&id=$1" 
 
+#Cùng chuyên mục
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+).html$  index.php?mod=product&action=detail&id=$2
+
+#Bộ lọc
+RewriteRule "^filter$" "?mod=home&action=filter" 
+
 #Sản phẩm
 RewriteRule ^giohang/([a-zA-Z0-9_-]+)-([0-9]+).html$  index.php?mod=cart&action=index&id=$2
 
 #Checkout
 RewriteRule "^checkout-([0-9]+)$" "?mod=cart&action=checkout&id=$1" 
+
+#Chi tiết mặt hàng
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+).html$  index.php?mod=product&action=detail&id=$2

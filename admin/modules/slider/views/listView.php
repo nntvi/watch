@@ -1,4 +1,5 @@
-<?php get_header(); ?>
+<?php get_header(); 
+?>
 <div id="main-content-wp" class="list-product-page list-slider">
     <div class="wrap clearfix">
         <?php get_sidebar(); ?>
@@ -18,10 +19,10 @@
                             <li class="pending"><a href="">Chờ xét duyệt<span class="count">(0)</span></a></li>
                             <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li>
                         </ul> -->
-                        <form method="GET" class="form-s fl-right">
+                        <!-- <form method="GET" class="form-s fl-right">
                             <input type="text" name="search" id="s">
                             <input type="submit" name="search" value="Tìm kiếm">
-                        </form>
+                        </form> -->
                     </div>
                     <div class="actions">
                         <!-- <form method="GET" action="" class="form-actions">
@@ -41,7 +42,7 @@
                                     <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Hình ảnh</span></td>
-                                    <td><span class="thead-text">Link</span></td>
+                                    <td><span class="thead-text">Tên slide</span></td>
                                     <!-- <td><span class="thead-text">Thứ tự</span></td> -->
                                     <!-- <td><span class="thead-text">Trạng thái</span></td>
                                     <td><span class="thead-text">Người tạo</span></td> -->
@@ -64,7 +65,7 @@
                                         </td>
                                         <td class="clearfix">
                                             <div class="tb-title fl-left">
-                                                <a href="" title=""><?php echo $item['slide_link'];  ?></a>
+                                                <a href="" title=""><?php echo $item['slide_name'];  ?></a>
                                             </div>
                                             <ul class="list-operation fl-right">
                                                 <li><a href="<?php echo $item['url_update'];  ?>" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
@@ -84,7 +85,7 @@
                                     <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Hình ảnh</span></td>
-                                    <td><span class="thead-text">Link</span></td>
+                                    <td><span class="thead-text">Tên slide</span></td>
                                     <!-- <td><span class="thead-text">Thứ tự</span></td> -->
                                     <!-- <td><span class="thead-text">Trạng thái</span></td>
                                     <td><span class="thead-text">Người tạo</span></td> -->
@@ -97,7 +98,7 @@
             </div>
             <div class="section" id="paging-wp">
                 <div class="section-detail clearfix">
-                    <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
+                    <!-- <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p> -->
                     <!-- <ul id="list-paging" class="fl-right">
                         <li>
                             <a href="" title="">

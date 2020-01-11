@@ -80,7 +80,6 @@ function addAction()
         }
 
         if (empty($error)) {
-        
             $data = array(
                 'slide_name' => $slide_name,
                 'slide_link' => $slide_link,
@@ -103,13 +102,15 @@ function listAction()
     foreach ($list_slide as &$item) {
         $item['url_update'] = "?mod=slider&action=update&id={$item['slide_id']}";
     }
+    //show_array($list_slide);
     $data['list_slider'] = $list_slide;
     load_view('list', $data);
 }
 function updateAction()
 {
     $id = $_GET['id'];
-    global $error, $link, $img, $name,$success;
+    global $error, $link, $name,$success;
+    #Xử lý hình ảnh và upload
     if (isset($_POST['btn_update_slider'])) {
         $error = array();
         if (empty($_POST['slide_name'])) {
@@ -117,13 +118,13 @@ function updateAction()
         } else {
             $name = $_POST['slide_name'];
         }
-        if (empty($_POST['slide_name'])) {
-            $error['slide_link'] = "Không để trống link slide";
-        } else {
-            $link = $_POST['slide_link'];
-        }
 
-        #Xử lý hình ảnh và upload
+        // if (empty($_POST['slide_name'])) {
+        //     $error['slide_link'] = "Không để trống link slide";
+        // } else {
+        //     $link = $_POST['slide_link'];
+        // }
+
         if (isset($_FILES['file']) && strlen($_FILES['file']['name']) > 0) {
             $error = array();
             //Thư mục chưa file
@@ -175,30 +176,30 @@ function updateAction()
             }
         }
 
+        //Kết luật
         if (empty($error)) {
             if ((isset($_FILES['file']) && strlen($_FILES['file']['name']) > 0 && move_uploaded_file($_FILES['file']['tmp_name'], $upload_file)) || strlen($_FILES['file']['name']) <= 0 || !isset($_FILES['file'])) {
                 $data = array(
                     'slide_name' => $name,
                     'slide_link' => $link,
                     'slide_date' => date("d/m/Y"),
-
+                    // 'slide_thumb' =>  $img_new,
+    
                 );
                 if (isset($_FILES['file']) && strlen($_FILES['file']['name']) > 0) {
                     $data['slide_thumb'] =  $img_new;
                 }
-                //show_array($data);
-                update_slider($data, $id);
+                // show_array($data);
+                update_slider($data,$id);
                 $success = "Đã chỉnh sửa thành công";
-            } else {
-                echo "Upload thất bại";
             }
-        } else {
-            echo "Chỉnh sửa thất bại";
         }
-    } else {
-        print_r($error);
     }
-    $data['item'] = get_slider_by_id($id);
-
-    load_view('list');
+    $data['show_slide'] = get_slider_by_id($id);
+    load_view('update',$data);
 }
+
+
+
+
+

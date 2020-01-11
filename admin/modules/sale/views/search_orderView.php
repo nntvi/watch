@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php get_header(); 
+// show_array($list_search);
+?>
 <div id="main-content-wp" class="list-product-page">
     <div class="wrap clearfix">
         <?php get_sidebar(); ?>
@@ -12,17 +14,17 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">(69)</span></a> |</li>
-                            <li class="publish"><a href="">Đã đăng <span class="count">(51)</span></a> |</li>
+                            <li class="all"><a href="">Kết quả tìm thấy <span class="count">(<?php echo $count ?>)</span></a></li>
+                            <!-- <li class="publish"><a href="">Đã đăng <span class="count">(51)</span></a> |</li>
                             <li class="pending"><a href="">Chờ xét duyệt<span class="count">(0)</span> |</a></li>
-                            <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li>
+                            <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li> -->
                         </ul>
-                        <form method="GET" class="form-s fl-right">
-                            <input type="text" name="s" id="s">
+                        <form method="post" class="form-s fl-right" action="?mod=sale&action=search_order">
+                            <input type="text" name="search" id="s">
                             <input type="submit" name="btn_search" value="Tìm kiếm">
                         </form>
                     </div>
-                    <div class="actions">
+                    <!-- <div class="actions">
                         <form method="GET" action="" class="form-actions">
                             <select name="actions">
                                 <option value="0">Tác vụ</option>
@@ -32,12 +34,12 @@
                             </select>
                             <input type="submit" name="sm_action" value="Áp dụng">
                         </form>
-                    </div>
+                    </div> -->
                     <div class="table-responsive">
                         <table class="table list-table-wp">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Mã đơn hàng</span></td>
                                     <td><span class="thead-text">Họ và tên</span></td>
@@ -50,14 +52,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                if (!empty($search_order)) { ?>
+                                if (!empty($list_search)) { ?>
                                     <?php
                                         $temp = 0;
-                                        foreach ($search_order as $item) {
+                                        foreach ($list_search as $item) {
                                             $temp++;
                                             ?>
                                         <tr>
-                                            <td><input type="checkbox" name="checkItem" class="checkItem"></td>
+                                            <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
                                             <td><span class="tbody-text"><?php echo $temp; ?></h3></span>
                                             <td><span class="tbody-text"><?php echo $item['order_id'] ?></h3></span>
                                             <td>
@@ -86,7 +88,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                    <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                     <td><span class="tfoot-text">STT</span></td>
                                     <td><span class="tfoot-text">Mã đơn hàng</span></td>
                                     <td><span class="tfoot-text">Họ và tên</span></td>
@@ -103,7 +105,7 @@
             </div>
             <div class="section" id="paging-wp">
                 <div class="section-detail clearfix">
-                    <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
+                    <!-- <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p> -->
                     <ul id="list-paging" class="fl-right">
                         <?php
                         // echo get_pagging($num_page, $page, "?mod=sale&action=list_order");

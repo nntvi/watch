@@ -5,7 +5,7 @@
 
             <div class="section" id="feature-product-wp">
                 <div class="section-head">
-                    <h3 class="section-title">Kết quả tìm kiếm cho: <?php echo $name ?></h3>
+                    <h3 class="section-title">Kết quả tìm kiếm cho: <?php echo str_replace('%', ' ',$name) ?></h3>
                 </div>
             </div>
 
@@ -16,17 +16,17 @@
                             ?>
                             <?php foreach ($search as $item) { ?>
                                 <li>
-                                    <a href="?mod=product&action=detail&id=<?php echo $item['pro_id']; ?>" title="" class="thumb">
+                                    <a href="detail-product-<?php echo $item['pro_id'];?>.html" title="" class="thumb">
                                         <img src="../project/admin/public/uploads/<?php echo $item['pro_thumb']; ?>">
                                     </a>
-                                    <a href="?mod=product&action=detail&id=<?php echo $item['pro_id']; ?>" title="" class="product-name"><?php echo $item['pro_name']; ?></a>
+                                    <a href="detail-product-<?php echo $item['pro_id'];?>.html" title="" class="product-name"><?php echo $item['pro_name']; ?></a>
                                     <div class="price">
                                         <span class="new"><?php echo number_format($item['pro_price']) . 'đ' ?></span>
                                         <span class="old"><?php echo number_format($item['pro_price_old']) . 'đ' ?></span>
                                     </div>
                                     <div class="action clearfix">
-                                        <a href="?mod=cart&action=indexid={$item['pro_id']}" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                        <a href="?mod=cart&action=checkoutid={$item['pro_id']}" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                        <a href="giohang/product-<?php echo $item['pro_id'] ?>.html" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                        <a href="checkout-<?php echo $item['pro_id'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                     </div>
                                 </li>
                             <?php } ?>

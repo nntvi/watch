@@ -13,7 +13,7 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">(69)</span></a> </li>
+                            <li class="all"><span class="count">Tất cả (<?php echo $count['count_id']; ?>)</span></li>
                             <!-- <li class="publish"><a href="">Đã đăng <span class="count">(51)</span></a> |</li>
                             <li class="pending"><a href="">Chờ xét duyệt<span class="count">(0)</span> |</a></li>
                             <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li> -->
@@ -46,8 +46,9 @@
                                     <td><span class="thead-text">Giá</span></td>
                                     <td><span class="thead-text">Danh mục</span></td>
                                     <td><span class="thead-text">Giới tính</span></td>
-                                    <td><span class="thead-text">Người tạo</span></td>
-                                    <td><span class="thead-text">Thời gian</span></td>
+                                    <td><span class="thead-text">Tổng SL</span></td>
+                                    <td><span class="thead-text">SL còn lại</span></td>
+                                    <td><span class="thead-text">Ngày nhập</span></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,7 +77,8 @@
                                         <td><span class="tbody-text"><?php echo number_format($item['pro_price']).'đ'  ?></span></td>
                                         <td><span class="tbody-text"><?php echo $item['cat_name'];  ?></span></td>
                                         <td><span class="tbody-text"><?php echo $item['pro_gender'];  ?></span></td>
-                                        <td><span class="tbody-text">Admin</span></td>
+                                        <td style="text-align: center;"><span class="tbody-text"><?php echo $item['pro_number'];  ?></span></td>
+                                        <td style="text-align: center;"><span class="tbody-text"><?php echo $item['pro_remain'];  ?></span></td>
                                         <td><span class="tbody-text"><?php echo $item['pro_time'];  ?></span></td>
                                     </tr>
                                 <?php } ?>
@@ -92,8 +94,9 @@
                                     <td><span class="tfoot-text">Giá</span></td>
                                     <td><span class="tfoot-text">Danh mục</span></td>
                                     <td><span class="tfoot-text">Trạng thái</span></td>
-                                    <td><span class="tfoot-text">Người tạo</span></td>
-                                    <td><span class="tfoot-text">Thời gian</span></td>
+                                    <td><span class="thead-text">Tổng số lượng</span></td>
+                                    <td><span class="thead-text">Số lượng còn lại</span></td>
+                                    <td><span class="tfoot-text">Ngày nhập</span></td>
                                 </tr>
                             </tfoot>
                         </table>

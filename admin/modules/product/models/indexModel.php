@@ -30,11 +30,15 @@ function delete_cat($id)
 }
 
 function get($id){
-$name = db_fetch_array("SELECT * FROM `tbl_cat_product` WHERE `parent_cat` = {$id}");
-return $name;
+    $name = db_fetch_array("SELECT * FROM `tbl_cat_product` WHERE `parent_cat` = {$id}");
+    return $name;
 }
 function get_product_by_id($id){
-    return db_fetch_row("SELECT tbl_products.*, tbl_cat_product.cat_name FROM tbl_products INNER JOIN tbl_cat_product ON tbl_products.cat_id = tbl_cat_product.cat_id WHERE `pro_id` = {$id}");
+    return db_fetch_row("SELECT tbl_products.*, tbl_cat_product.cat_name 
+                         FROM tbl_products 
+                         INNER JOIN tbl_cat_product 
+                         ON tbl_products.cat_id = tbl_cat_product.cat_id 
+                         WHERE `pro_id` = {$id}");
 }
 function add_product($data){
     db_insert('tbl_products',$data);
@@ -49,7 +53,10 @@ function get_name_thumb_by_id($id){
 #Hàm xử lý show toàn bộ thông tin và xử lý phân trang
 function get_name_of_product($start = 1, $num_per_page = 10, $where = "")
 {
-    $list_post = db_fetch_array("SELECT tbl_products.*, tbl_cat_product.cat_name FROM tbl_products INNER JOIN tbl_cat_product ON tbl_products.cat_id = tbl_cat_product.cat_id LIMIT {$start}, {$num_per_page}");
+    $list_post = db_fetch_array("SELECT tbl_products.*, tbl_cat_product.cat_name 
+                                    FROM tbl_products INNER JOIN tbl_cat_product 
+                                    ON tbl_products.cat_id = tbl_cat_product.cat_id 
+                                    LIMIT {$start}, {$num_per_page}");
     return $list_post;
 }
 #Hàm xử lý show toàn bộ thông tin và xử lý phân trang
@@ -64,10 +71,26 @@ function delete_product($id){
 
 function get_search($str)
 {
-    $list_pro = db_fetch_array("SELECT tbl_products.*, tbl_cat_product.cat_name FROM tbl_products INNER JOIN tbl_cat_product ON tbl_products.cat_id = tbl_cat_product.cat_id where pro_name like '%{$str}%'");
+    $list_pro = db_fetch_array("SELECT tbl_products.*, tbl_cat_product.cat_name 
+                                FROM tbl_products INNER JOIN tbl_cat_product 
+                                ON tbl_products.cat_id = tbl_cat_product.cat_id 
+                                where pro_name like '%{$str}%' 
+                                or pro_code like '%{$str}%'");
     return $list_pro;
 }
+function count_search_pro($str){
+    return db_fetch_row("SELECT tbl_products.*, tbl_cat_product.cat_name, COUNT(pro_id) as sl
+                                FROM tbl_products INNER JOIN tbl_cat_product 
+                                ON tbl_products.cat_id = tbl_cat_product.cat_id 
+                                where pro_name like '%{$str}%' 
+                                or pro_code like '%{$str}%'");
+}
+
 function result_search($str){
     $item = db_num_rows("SELECT * FROM `tbl_products` WHERE `pro_name` LIKE '%{$str}%'");
     return $item;
+}
+
+function count_pro(){
+    return db_fetch_row("SELECT COUNT(pro_id) as count_id FROM `tbl_products`");
 }

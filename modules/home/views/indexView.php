@@ -1,18 +1,18 @@
-<?php get_header(); ?>
+<?php get_header(); 
+?>
 <div id="main-content-wp" class="home-page clearfix">
     <div class="wp-inner">
         <div class="main-content fl-right">
             <div class="section" id="slider-wp">
                 <div class="section-detail">
-                    <div class="item">
-                        <img src="public/images/slider-01.png" alt="">
-                    </div>
-                    <div class="item">
-                        <img src="public/images/slider-02.png" alt="">
-                    </div>
-                    <div class="item">
-                        <img src="public/images/slider-03.png" alt="">
-                    </div>
+                     <?php
+                    foreach ($slide as $item) { ?>
+                        <div class="item">
+                            <a href="http://localhost/watch/detail-product-35.html" target="_blank" rel="noopener noreferrer">
+                                <img src="../watch/admin/public/uploads/<?php echo $item['slide_thumb'] ?>" alt="">
+                            </a>
+                        </div>
+                    <?php   } ?>
                 </div>
             </div>
             <div class="section" id="support-wp">
@@ -44,7 +44,7 @@
                                 <img src="public/images/icon-4.png">
                             </div>
                             <h3 class="title">Thanh toán nhanh</h3>
-                            <p class="desc">Hỗ trợ nhiều hình thức</p>
+                            <p class="desc">Hỗ trợ linh hoạt</p>
                         </li>
                         <li>
                             <div class="thumb">
@@ -64,17 +64,25 @@
                     <ul class="list-item">
                         <?php foreach($pro_hot as $hot){?>
                         <li>
-                            <a href="?mod=product&action=detail&id=<?php echo $hot['pro_id'];?>" title="" class="thumb">
-                                <img src="../project/admin/public/uploads/<?php echo $hot['pro_thumb'] ?>">
+                            <a href="detail-product-<?php echo $hot['pro_id'];?>.html" title="" class="thumb">
+                                <img src="../watch/admin/public/uploads/<?php echo $hot['pro_thumb'] ?>">
                             </a>
-                            <a href="?mod=product&action=detail&id=<?php echo $p['pro_id'];?>" title="" class="product-name"><?php echo $hot['pro_name']?></a>
+                            <a href="detail-product-<?php echo $hot['pro_id'];?>.html" title="" class="product-name"><?php echo $hot['pro_name']?></a>
                             <div class="price">
                                 <span class="new"><?php echo number_format($hot['pro_price']).' đ'?></span>
                                 <span class="old"><?php echo number_format($hot['pro_price_old']).' đ'?></span>
                             </div>
                             <div class="action clearfix">
-                                <a href="product-<?php echo $hot['pro_id']?>" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="checkout-<?php echo $hot['pro_id'] ?>" title="" class="buy-now fl-right">Mua ngay</a>
+                                <?php 
+                                if($hot['pro_remain'] == 0){ ?>
+                                   <span>Hết hàng</span>
+                                <?php } else{ ?>
+                                    <div class="action clearfix">
+                                    <a href="giohang/product-<?php echo $hot['pro_id']?>.html" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                    <a href="?mod=cart&action=buyNow&id=<?php echo $hot['pro_id'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                </div>
+                               <?php }
+                            ?>
                             </div>
                         </li>
                         <?php }?>
@@ -98,21 +106,27 @@
                         <?php foreach(get_product($id_sub_menu) as $p){ 
                             //show_array($p);
                             $count++;
-                            if($count < 5){
+                            if($count < 5){ // giới hạn sản phẩm
                             ?>
                         <li>
-                            <a href="?mod=product&action=detail&id=<?php echo $p['pro_id'];?>" title="" class="thumb">
-                                <img src="../project/admin/public/uploads/<?php echo $p['pro_thumb']; ?>">
+                            <a href="detail-product-<?php echo $p['pro_id'];?>.html" title="" class="thumb">
+                                <img src="../watch/admin/public/uploads/<?php echo $p['pro_thumb']; ?>">
                             </a>
-                            <a href="?mod=product&action=detail&id=<?php echo $p['pro_id'];?>" title="" class="product-name"><?php echo $p['pro_name']; ?></a>
+                            <a href="detail-product-<?php echo $p['pro_id'];?>.html" title="" class="product-name"><?php echo $p['pro_name']; ?></a>
                             <div class="price">
                                 <span class="new"><?php echo number_format($p['pro_price']) . 'đ' ?></span>
                                 <span class="old"><?php echo number_format($p['pro_price_old']) . 'đ'?></span>
                             </div>
-                            <div class="action clearfix">
-                                <a href="giohang/product-<?php echo $p['pro_id']?>.html" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                <a href="?mod=cart&action=checkoutid={$p['pro_id']}" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
-                            </div>
+                            <?php 
+                                if($p['pro_remain'] == 0){ ?>
+                                   <span>Hết hàng</span>
+                                <?php } else{ ?>
+                                    <div class="action clearfix">
+                                    <a href="giohang/product-<?php echo $p['pro_id']?>.html" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                    <a href="?mod=cart&action=buyNow&id=<?php echo $p['pro_id'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                </div>
+                               <?php }
+                            ?>
                         </li>      
                             <?php }?>
                         <?php }?>                
@@ -124,6 +138,7 @@
           
         </div>
         <?php get_sidebar(); ?>
+        <?php get_sidebar('saler'); ?>
     </div>
 </div>
 <?php get_footer(); ?>

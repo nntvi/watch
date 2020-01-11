@@ -22,9 +22,18 @@ global $error, $success;
                         <input type="text" name="product_code" id="product-code" value="<?php echo $item['pro_code']; ?>">
                         <p class="error"><?php form_error('product_code'); ?></p>
 
-                        <label for="price">Giá sản phẩm</label>
+                        <label for="price">Giá nhập sản phẩm</label>
+                        <input type="text" name="product_price_import" id="price" value="<?php echo $item['price_import']; ?>">
+                        <p class="error"><?php form_error('product_price_import'); ?></p>
+                        <p class="error"><?php form_error('pro_exceed'); ?></p>
+
+                        <label for="price">Giá bán sản phẩm</label>
                         <input type="text" name="product_price" id="price" value="<?php echo $item['pro_price']; ?>">
                         <p class="error"><?php form_error('product_price'); ?></p>
+
+                        <label for="old_price">Giá cũ</label>
+                        <input type="text" name="product_old_price" id="price" value="<?php echo $item['pro_price_old']; ?>">
+                        <p class="error"><?php form_error('product_old_price'); ?></p>
 
                         <label for="gender">Giới tính</label>
                         <div class="gender">
@@ -40,14 +49,17 @@ global $error, $success;
 
                         <label for="desc">Chi tiết</label>
                         <textarea name="product_detail" id="desc" class="ckeditor"><?php echo $item['pro_detail']; ?>"</textarea>
-                        <p class="error"><?php form_error('product_detail'); ?></p>
 
                         <label>Hình ảnh</label>
                         <div id="uploadFile">
                             <input type="file" name="file" id="upload-thumb" value="">
                             <img src="../admin/public/uploads/<?php echo $name['pro_thumb']; ?>">
                         </div>
-
+                        
+                        <label for="product-name">Số lượng sản phẩm nhập về</label>
+                        <input type="number" name="product_number" id="product-name" min="1" value="<?php echo $item['pro_number'] ?>"> 
+                        <p class="error"><?php form_error('product_number'); ?></p>
+                        <br>
                         <p style="color:red; padding: 20px 0px;">Vui lòng chọn lại danh mục khi chỉnh sửa</p>
                         <label>Danh mục sản phẩm</label>
                         <select id="parent_id" name="parent_id">
@@ -56,10 +68,14 @@ global $error, $success;
                                 <option value="<?php echo $parent['cat_id']; ?>"><?php echo $parent['cat_name']; ?></option>
                             <?php } ?>
                         </select>
+                        <p class="error"><?php form_error('parent_id'); ?></p>
+
                         <label>Danh mục con</label>
                         <select id="sub-cat" name="sub-cat">
-                            <option><?php echo $item['cat_name']; ?></option>
+                            <option></option>
                         </select>
+                        <p class="error"><?php form_error('sub_cat'); ?></p>
+
                         <button type="submit" name="btn_update_product" id="btn-submit">Chỉnh sửa</button>
                     </form>
                 </div>

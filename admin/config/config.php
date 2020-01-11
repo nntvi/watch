@@ -13,7 +13,7 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
  * 
  */
 
-$config['base_url'] = "http://localhost/project/admin";
+$config['base_url'] = "http://localhost/watch/admin";
 
 
 $config['default_module'] = 'users';

@@ -1,11 +1,13 @@
-<?php get_header(); ?>
+<?php get_header(); 
+//show_array($_SESSION['cart'])
+?>
 <div id="main-content-wp" class="checkout-page">
     <div class="section" id="breadcrumb-wp">
         <div class="wp-inner">
             <div class="section-detail">
                 <ul class="list-item clearfix">
                     <li>
-                        <a href="?page=home" title="">Trang chủ</a>
+                        <a href="trang-chu" title="">Trang chủ</a>
                     </li>
                     <li>
                         <a href="" title="">Thanh toán</a>
@@ -70,18 +72,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($_SESSION['cart']['buy'] as $item) { ?>
-                            <tr class="cart-item">
-                            <td class="product-name"><?php echo $item['name'] ?><strong class="product-quantity">x <?php echo $item['qty'] ?></strong></td>
-                            <td class="product-total"><?php echo $item['sub_total'] ?></td>
-                        </tr>
-                        <?php } ?>
                         
+                            <?php foreach ($_SESSION['cart']['buy'] as $item) { ?>
+                                <tr class="cart-item">
+                                    <td class="product-name"><?php echo $item['name'] ?><strong class="product-quantity">x <?php echo $item['qty'] ?></strong></td>
+                                    <td class="product-total"><?php echo number_format($item['sub_total']).' đ' ?></td>
+                                </tr>
+                            <?php } ?>
                     </tbody>
                     <tfoot>
                         <tr class="order-total">
                             <td>Tổng đơn hàng:</td>
-                            <td><strong class="total-price"><?php echo $_SESSION['cart']['info']['total'] ?></strong></td>
+                            <td><strong class="total-price"><?php echo number_format($_SESSION['cart']['info']['total']).' đ' ?></strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -99,10 +101,15 @@
                     </div>
                 <div class="place-order-wp clearfix">
                     <input type="submit" id="order-now" value="Đặt hàng" name="checkout">
+                    
+                   
+                    
                 </div>
+               
             </div>
         </div>
     </form>
     </div>
 </div>
+<script></script>
 <?php get_footer(); ?>

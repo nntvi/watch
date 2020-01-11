@@ -18,11 +18,12 @@
             <input type="text" name="username" id="username" placeholder="Username" />
             <p class="error"><?php echo form_error('username'); ?></p>
             <!--Password-->
+            <br>
             <input type="password" name="password" id="password" placeholder="Password" />
             <p class="error"><?php echo form_error('password'); ?></p>
             <!--SESSION-->
-            <input type="checkbox" name="remember_me" id="remember" />Ghi nhớ đăng nhập
-
+            <!-- <input type="checkbox" name="remember_me" id="remember" />Ghi nhớ đăng nhập -->
+            <br>
             <!--Đăng Nhập-->
             <input type="submit" value="Đăng Nhập" name="btn_login" id="btn_login" />
             <p class="error"><?php echo form_error('account'); ?></p>

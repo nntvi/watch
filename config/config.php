@@ -11,7 +11,7 @@
  * 
  */
 
-$config['base_url'] = "http://localhost/project/";
+$config['base_url'] = "http://localhost/watch/";
 
 
 $config['default_module'] = 'home';

@@ -16,7 +16,8 @@ global $error, $success;
                 <div class="section-detail">
                     <form method="POST">
                         <label for="product-name">Tên danh mục cũ</label>
-                        <input type="text" name="old_cat_name" id="product-name" readonly="readonly" value="<?php echo $cat['cat_name'];?>" disabled > 
+                        <input type="text" name="old_cat_name" id="product-name" readonly="readonly" value="<?php echo $cat['cat_name'];?>" disabled >
+ 
                         <label for="product-name">Tên danh mục mới</label>
                         <input type="text" name="new_cat_name" id="product-name">   
                         <p class="error"><?php echo form_error('new_cat_name') ?></p>

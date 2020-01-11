@@ -1,16 +1,23 @@
 <?php get_header(); 
 ?>
+<?php
+$role = get_role_user($_SESSION['user_login']);
+global $error, $success;
+?>
 <div id="main-content-wp" class="change-pass-page">
     <div class="section" id="title-page">
-        <div class="clearfix">
-
-            <h3 id="index" class="fl-left">Cập nhật tài khoản</h3>
-            <a href="?page=add_cat" title="" id="add-new" class="fl-left">Thêm mới</a>
-        </div>
+        
     </div>
     <div class="wrap clearfix">
         <?php get_sidebar('users'); ?>
         <div id="content" class="fl-right">
+        <div class="clearfix">
+            <h3 id="index" class="fl-left">Cập nhật tài khoản</h3>
+            <?php if (in_array($role['user_role'], [7])) { ?>
+            <!-- <a href="?mod=users&action=adduser" title="" id="add-new" class="fl-left">Thêm mới</a> -->
+            <?php } ?>
+        </div>
+        <h1 style="font-size: 18px; color: red; margin-bottom: 15px;"><?php echo isset($success) ? $success : ""; ?></h1>
             <div class="section" id="detail-page">
                 <div class="section-detail">
                     <form method="POST">

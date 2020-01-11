@@ -15,16 +15,33 @@
                     </li>
                     <li>
                         <h3 class="title">Địa chỉ nhận hàng</h3>
-                        <span class="detail"><?php if ($detail_order['status'] == 1) {
-                                                    echo "Chờ duyệt";
-                                                } else if ($detail_order['status'] == 2){ echo "Đang vận chuyển";}
-                                                else if ($detail_order['status'] == 3) {echo "Thành công";} ?></span>
+                        <span class="detail"><?php echo $detail_order['cus_address'] ?></span>
                     </li>
                     <li>
                         <h3 class="title">Thông tin vận chuyển</h3>
-                        <span class="detail"><?php echo $detail_order['status'] ?></span>
+                        <span class="detail"><?php if ($detail_order['status'] == 1) {
+                                                    echo "Chờ duyệt";
+                                                } else if ($detail_order['status'] == 2) {
+                                                    echo "Đang vận chuyển";
+                                                } else if ($detail_order['status'] == 3) {
+                                                    echo "Thành công";
+                                                } ?></span>
                     </li>
-                    <form method="POST" action="">
+                    <li>
+                        <h3 class="title">Ghi chú của khách hàng</h3>
+                        <?php if (empty($note['cus_note'])) { ?>
+                            <span class="detail">Đơn hàng này không có ghi chú </span>
+                        <?php } else {
+                            echo $note['cus_note'] ?>
+
+                        <?php } ?>
+                    </li>
+                    <?php
+                    if ($detail_order['status'] == 3) { ?>
+                        <li style="border: 2px solid red;    width: 25%;    padding: 2px 0px;">
+                            <h3 class="title">Tình trạng đơn hàng: <span class="detail"> Thành công</span></h3>
+                        <?php } else { ?>
+                            <form method="POST" action="">
                         <li>
                             <h3 class="title">Tình trạng đơn hàng</h3>
                             <select name="status">
@@ -47,7 +64,10 @@
                             <input type="submit" name="btn_update_status" value="Cập nhật đơn hàng">
                             <!-- <input type="submit" name="btn_send_mail" style="background-color: #eb4d4b;" value="Gửi mail xác nhận"> -->
                         </li>
-                    </form>
+                        </form>
+                    <?php } ?>
+
+
                 </ul>
             </div>
             <div class="section">
@@ -71,7 +91,7 @@
                             $temp = 0;
                             foreach ($dt_od_product as $item) {
                                 $temp++;
-                                ?>
+                            ?>
                                 <tr>
                                     <td class="thead-text"><?php echo $temp; ?></td>
                                     <td class="thead-text">

@@ -1,5 +1,5 @@
 <?php get_header(); 
-global $error, $success;
+global $success;
 ?>
 <div id="main-content-wp" class="add-cat-page">
     <div class="wrap clearfix">
@@ -11,7 +11,6 @@ global $error, $success;
                 </div>
             </div>
             <h1 style="font-size: 18px; color: red; margin-bottom: 15px;"><?php echo isset($success) ? $success : ""; ?></h1>
-
             <div class="section" id="detail-page">
                 <div class="section-detail">
                     <form method="POST" enctype="multipart/form-data">
@@ -22,6 +21,11 @@ global $error, $success;
                         <label for="product-code">Mã sản phẩm</label>
                         <input type="text" name="product_code" id="product-code">
                         <p class="error"><?php form_error('product_code'); ?></p>
+
+                        <label for="price">Giá nhập sản phẩm</label>
+                        <input type="text" name="product_price_import" id="price">
+                        <p class="error"><?php form_error('product_price_import'); ?></p>
+                        <p class="error"><?php form_error('pro_exceed'); ?></p>
 
                         <label for="price">Giá bán sản phẩm</label>
                         <input type="text" name="product_price" id="price">
@@ -49,8 +53,14 @@ global $error, $success;
                             <input type="file" name="file" id="upload-thumb">
                         </div>
                         <p class="error"><?php form_error('file'); ?></p>
+                        <p class="error"><?php form_error('type'); ?></p>
+                        <p class="error"><?php form_error('file_size'); ?></p>
+                        
+                        <label for="product-name">Số lượng sản phẩm nhập về</label>
+                        <input type="number" name="product_number" id="product-name" min="1"> 
+                        <p class="error"><?php form_error('product_number'); ?></p>
+                        <br>
 
-                       
                         <label>Danh mục sản phẩm</label>
                         <select id="parent_id" name="parent_id">
                             <option value="-1">-- Chọn danh mục --</option>
@@ -59,16 +69,18 @@ global $error, $success;
                             <?php } ?>
                         </select>
                         <label>Danh mục con</label>
+                        <p class="error"><?php form_error('sub_cat'); ?></p>
                         <select id="sub-cat" name="sub-cat">
-
+                                
                         </select>
+
                         <!-- <label>Trạng thái</label>
                         <select name="status">
                             <option value="0">-- Chọn danh mục --</option>
                             <option value="1">Chờ duyệt</option>
                             <option value="2">Đã đăng</option>
                         </select> -->
-                        <button type="submit" name="btn_add_product" id="btn-submit">Thêm mới</button>
+                        <button style="margin-top: 20px;"type="submit" name="btn_add_product" id="btn-submit">Thêm mới</button>
                     </form>
                 </div>
             </div>

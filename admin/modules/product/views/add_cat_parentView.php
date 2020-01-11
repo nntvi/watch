@@ -17,6 +17,8 @@ global $error, $success;
                     <form method="POST">
                         <label for="title">Tên danh mục con</label>
                         <input type="text" name="cat_name_parent" id="title">
+                        <p class="error"><?php echo form_error('cat_name_parent'); ?></p>
+
                         <label>Danh mục cha</label>
                         <select name="parent_cat">
                         <option value="">-- Chọn danh mục --</option>
@@ -25,6 +27,8 @@ global $error, $success;
                             <option value="<?php echo $item['cat_id'];?>"><?php echo $item['cat_name']; ?></option>
                             <?php } ?>
                         </select>
+                        <p class="error"><?php echo form_error('parent_cat'); ?></p>
+
                         <button type="submit" name="btn_cat_parent" id="btn-submit">Cập nhật</button>
                     </form>
                 </div>

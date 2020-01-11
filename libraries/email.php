@@ -15,12 +15,12 @@ require 'PHPMailer/src/SMTP.php';
 
 function sent_email($sent_to_email, $sent_to_fullname, $subject, $content)
 {
-    global $config;
+    global $config; // khai báo global để sd lại config đã khai báo ở folder config---email
     $config_email = $config['email'];
-    $mail = new PHPMailer(true);
+    $mail = new PHPMailer(true); // khai báo 1 mail mới
     try {
         //Server settings
-        $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+        //$mail->SMTPDebug = 2;                                       // Enable verbose debug output
         $mail->isSMTP();                                            // Set mailer to use SMTP
         $mail->Host       = $config_email['smtp_host'];  // Specify main and backup SMTP servers
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -34,7 +34,7 @@ function sent_email($sent_to_email, $sent_to_fullname, $subject, $content)
 
         //Recipients
         $mail->setFrom($config_email['smtp_user'], $config_email['smtp_fullname']);
-        $mail->addAddress($sent_to_email, $sent_to_fullname);     // Add a recipient
+        $mail->addAddress($sent_to_email, $sent_to_fullname);     // truyền vào email và địa chỉ người nhận
         //  $mail->addAddress('ellen@example.com');               // Name is optional
         $mail->addReplyTo($config_email['smtp_user'], $config_email['smtp_fullname']);
         //$mail->addCC('cc@example.com');
@@ -46,12 +46,12 @@ function sent_email($sent_to_email, $sent_to_fullname, $subject, $content)
 
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = $subject;
-        $mail->Body    = $content;
+        $mail->Subject = $subject; // Xác nhận đơn hàng của watch shop
+        $mail->Body    = $content; // content là nội dung mua sản phẩm
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
-        echo 'Message has been sent';
+        //echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }

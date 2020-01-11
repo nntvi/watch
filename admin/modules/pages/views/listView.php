@@ -15,7 +15,7 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">(10)</span></a> </li>
+                            <!-- <li class="all"><a href="">Tất cả <span class="count">(10)</span></a> </li> -->
                             <!-- <li class="publish"><a href="">Đã đăng <span class="count">(5)</span></a> |</li>
                             <li class="pending"><a href="">Chờ xét duyệt <span class="count">(5)</span> |</a></li>
                             <li class="trash"><a href="">Thùng rác <span class="count">(0)</span></a></li> -->
